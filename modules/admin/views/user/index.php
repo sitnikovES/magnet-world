@@ -25,7 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'login',
             'name',
             'email:email',
-            'role',
+            //'role_id',
+            [
+                'attribute' => 'role_id',
+                'content' => function($data){
+                    return $data->roles[$data->role_id];
+                }
+            ],
             // 'status',
             // 'password_hash',
             // 'created_at',

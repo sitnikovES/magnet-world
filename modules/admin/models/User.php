@@ -13,7 +13,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $login
  * @property string $name
  * @property string $email
- * @property integer $role
+ * @property integer $role_id
  * @property integer $status
  * @property string $password_hash
  * @property string $auth_key
@@ -27,6 +27,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     const STATUS_ACTIVE = 10;
 
     public $password;
+
+    public $roles = array(1 => 'Администратор', 2 => 'Дизайнер');
 
 
     /**
@@ -44,7 +46,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             [['login', 'name', 'email'], 'required'],
-            [['role', 'status'], 'integer'],
+            [['role_id', 'status'], 'integer'],
             [['login', 'name', 'email', 'password_hash', 'auth_key'], 'string', 'max' => 255],
             ['login', 'string', 'min' => 5, 'max' => 20],
             ['password', 'string', 'min' => 5, 'max' => 255],
@@ -62,7 +64,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'login' => 'Логин',
             'name' => 'Имя',
             'email' => 'E-Mail',
-            'role' => 'Роль',
+            'role_id' => 'Роль',
             'status' => 'Статус',
             'password_hash' => 'Password Hash',
             'created_at' => 'Создан',
@@ -159,3 +161,4 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $this->login;
     }
 }
+
