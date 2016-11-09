@@ -12,7 +12,7 @@ class m161108_163059_create_cidr_optim_table extends Migration
      */
     public function up()
     {
-        $this->createTable('cidr_optim', [
+        $this->createTable('{{%geo_cidr_optim}}', [
             'id' => $this->primaryKey(),
             'block_begin' => $this->integer()->comment('Начало блока'),
             'block_end' => $this->integer()->comment('Конец блока'),
@@ -21,8 +21,8 @@ class m161108_163059_create_cidr_optim_table extends Migration
             'country' => $this->string()->comment('Код страны'),
             'city_id' =>$this->integer()->comment('Код города')
         ]);
-        $this->createIndex('ip_begin', 'cidr_optim', 'block_begin');
-        $this->createIndex('ip_end', 'cidr_optim', 'block_end');
+        $this->createIndex('ip_begin', '{{%geo_cidr_optim}}', 'block_begin');
+        $this->createIndex('ip_end', '{{%geo_cidr_optim}}', 'block_end');
     }
 
     /**
@@ -30,8 +30,6 @@ class m161108_163059_create_cidr_optim_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('cidr_optim');
-        $this->dropIndex('ip_begin', 'cidr_optim');
-        $this->dropIndex('ip_end', 'cidr_optim');
+        $this->dropTable('{{%geo_cidr_optim}}');
     }
 }

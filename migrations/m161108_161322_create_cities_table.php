@@ -12,7 +12,7 @@ class m161108_161322_create_cities_table extends Migration
      */
     public function up()
     {
-        $this->createTable('cities', [
+        $this->createTable('{{%geo_cities}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->comment('Название наспеленного пункта'),
             'region' => $this->string()->comment('Регион'),
@@ -25,6 +25,6 @@ class m161108_161322_create_cities_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('cities');
+        $this->dropTable('{{%geo_cities}}');
     }
 }
