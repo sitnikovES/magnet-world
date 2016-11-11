@@ -20,6 +20,7 @@ use Yii;
  * @property string $text
  * @property string $name_translit
  * @property string $price_formula
+ * @property double $weight
  */
 class Producttype extends \yii\db\ActiveRecord
 {
@@ -38,7 +39,8 @@ class Producttype extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'mname'], 'unique'],
-            [['active', 'pos', 'rakel'], 'integer'],
+            [['active', 'pos', 'rakel'], 'number'],
+            [['weight'], 'double'],
             [['text'], 'string'],
             [['name', 'mname', 'title', 'caption', 'keywords', 'description', 'name_translit', 'price_formula'], 'string', 'max' => 255],
         ];
@@ -63,6 +65,7 @@ class Producttype extends \yii\db\ActiveRecord
             'text' => 'Текст',
             'name_translit' => 'Наименование с транслите',
             'price_formula' => 'Формула рачета стоимости',
+            'weight' => 'Вес (кг/м.кв.)',
         ];
     }
 }

@@ -11,8 +11,9 @@ class m161107_042720_update_users_table extends Migration
 
     public function down()
     {
-        echo "m161107_042720_update_users_table cannot be reverted.\n";
+       // echo "m161107_042720_update_users_table cannot be reverted.\n";
         $this->renameColumn('{{%users}}', 'role_id', 'role');
+        $this->insert('', []);
         return false;
     }
 

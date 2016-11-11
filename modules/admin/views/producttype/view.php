@@ -41,6 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'text:ntext',
             'name_translit',
             'price_formula',
+            'weight',
         ],
     ]) ?>
 
