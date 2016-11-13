@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property string $url
  * @property integer $price
  */
 class Postcompany extends \yii\db\ActiveRecord
@@ -29,6 +30,7 @@ class Postcompany extends \yii\db\ActiveRecord
         return [
             [['price', 'def', 'active'], 'integer'],
             [['name'], 'string', 'max' => 20],
+            [['url'], 'string', 'max' => 255],
             [['price'], 'default', 'value' => 0],
         ];
     }
@@ -41,6 +43,7 @@ class Postcompany extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Способ доставки',
+            'url' => 'Сайт компании',
             'price' => 'Стоимость',
             'def' => 'По умолчанию',
             'active' => 'Отображать',

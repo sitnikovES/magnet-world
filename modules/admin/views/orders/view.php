@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+$this->registerCssFile('@web/css/my.css', ['position'=>$this::POS_HEAD], 'my_css');
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Orders */
 
@@ -13,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <table>
     <tr>
-        <td>
+        <td valign="top">
             <div class="orders-view">
 
                 <h1><?= Html::encode($this->title) ?></h1>
@@ -43,11 +45,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'email:email',
                         'postindex',
                         //'order_status_id',
-                        ['attribute' => 'Способ оплаты', 'value' => $model->status->name, ],
+                        ['attribute' => 'Статус заказа', 'value' => $model->status->name, ],
                         //'pay_type_id',
                         ['attribute' => 'Способ оплаты', 'value' => $model->paytype->name, ],
                         //'post_type_id',
-                        ['attribute' => 'Способ оплаты', 'value' => $model->postcompany->name, ],
+                        ['attribute' => 'Способ отправки', 'value' => $model->postcompany->name, ],
                         'post_code',
                         'note',
                     ],
@@ -60,6 +62,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'model' => $model,
                 'dataProvider' => $dataProvider,
             ]) ?>
+            
+            <?= $this->render('index_cashflow', [
+                'model' => $model,
+                'dataProvider' => $billing['dataProvider'],
+            ]) ?>
+            <label>Всего получено:</label> <?php echo $billing['billing']['in']; ?> руб.<br>
+            <label>Всего потрачено:</label> <?php echo $billing['billing']['out']; ?> руб.<br>
+            <label>Сальдо:</label> <?php echo $billing['billing']['in'] - $billing['billing']['out']; ?> руб.<br>
         </td>
     </tr>
 </table>
