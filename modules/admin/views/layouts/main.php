@@ -53,6 +53,7 @@ AppAsset::register($this);
                 ['label' => 'Заказы', 'url' => ['/admin/orders']],
                 ['label' => 'Содержимое заказов', 'url' => ['/admin/ordercontent']],
                 ['label' => 'Позиции заказов', 'url' => ['/admin/orderproductparam']],
+                ['label' => 'Биллинг', 'url' => ['/admin/cashflow']],
                 ['label' => 'Статусы заказов', 'url' => ['/admin/orderstatus']],
                 ['label' => 'Способы оплаты', 'url'=>['/admin/paytype']],
                 ['label' => 'Способы отправки', 'url'=>['/admin/postcompany']],

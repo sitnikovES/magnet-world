@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'price')->textInput() ?>
 
+    <?= $form->field($model, 'url')->textInput() ?>
+
     <?= $form->field($model, 'active')->dropDownList(['нет', 'да']) ?>
 
     <?= $form->field($model, 'def')->dropDownList(['нет', 'да']) ?>

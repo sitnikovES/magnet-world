@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Postcompany */
+/* @var $model app\models\Cashflow */
 
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Способы доставки', 'url' => ['index']];
+$this->title = $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Биллинг', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="postcompany-view">
+<div class="cashflow-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -28,12 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            //'id',
-            'name',
-            'price',
-            'url',
-            'def:boolean',
-            'active:boolean',
+            'order_id',
+            //'type',
+            [
+                'attribute' => 'type',
+                'value' => $model->typename,
+            ],
+            'description',
+            'value',
         ],
     ]) ?>
 

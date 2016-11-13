@@ -3,25 +3,22 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Orders;
-use app\models\OrderContent;
 use app\models\Cashflow;
-use app\models\OrdersSearch;
+use app\models\CashflowSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\data\ActiveDataProvider;
 
 /**
- * OrdersController implements the CRUD actions for Orders model.
+ * CashflowController implements the CRUD actions for Cashflow model.
  */
-class OrdersController extends BehaviorsController
+class CashflowController extends Controller
 {
     public $layout = 'main';
     /**
      * @inheritdoc
      */
-    /*public function behaviors()
+    public function behaviors()
     {
         return [
             'verbs' => [
@@ -31,15 +28,15 @@ class OrdersController extends BehaviorsController
                 ],
             ],
         ];
-    }*/
+    }
 
     /**
-     * Lists all Orders models.
+     * Lists all Cashflow models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new OrdersSearch();
+        $searchModel = new CashflowSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -49,48 +46,25 @@ class OrdersController extends BehaviorsController
     }
 
     /**
-     * Displays a single Orders model.
+     * Displays a single Cashflow model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-        $billing = array('in' => 0, 'out' => 0);
-        $dataProvider = new ActiveDataProvider([
-            'query' => OrderContent::find()->where(['order_id' => $id]),
-        ]);
-
-        $dataProviderCashflow = new ActiveDataProvider([
-            'query' => Cashflow::find()->where(['order_id' => $id]),
-        ]);
-
-        foreach($dataProviderCashflow->models as $model){
-            if($model->type == 0){
-                $billing['out'] += $model->value;
-            }
-            if($model->type == 1){
-                $billing['in'] += $model->value;
-            }
-        }
-
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'dataProvider' => $dataProvider,
-            'billing' => [
-                'dataProvider' => $dataProviderCashflow,
-                'billing' => $billing,
-            ],
         ]);
     }
 
     /**
-     * Creates a new Orders model.
+     * Creates a new Cashflow model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Orders();
+        $model = new Cashflow();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -102,7 +76,7 @@ class OrdersController extends BehaviorsController
     }
 
     /**
-     * Updates an existing Orders model.
+     * Updates an existing Cashflow model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -121,7 +95,7 @@ class OrdersController extends BehaviorsController
     }
 
     /**
-     * Deletes an existing Orders model.
+     * Deletes an existing Cashflow model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -134,15 +108,15 @@ class OrdersController extends BehaviorsController
     }
 
     /**
-     * Finds the Orders model based on its primary key value.
+     * Finds the Cashflow model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Orders the loaded model
+     * @return Cashflow the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Orders::findOne($id)) !== null) {
+        if (($model = Cashflow::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
