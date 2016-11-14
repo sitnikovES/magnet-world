@@ -9,6 +9,9 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
+use app\models\Geocidroptim;
+use app\models\Geocities;
+
 class SiteController extends Controller
 {
     /**
@@ -60,6 +63,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+        $arr = explode('.', $_SERVER['REMOTE_ADDR']);
+        $num = $arr[0] * 256 * 256 * 256 + $arr[1] * 256 * 256 + $arr[2] * 256 + $arr[3];
+
+        $geo = Geocidroptim::find()->where([]);
+
+
         return $this->render('index');
     }
 

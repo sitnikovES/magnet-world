@@ -18,7 +18,7 @@ class m161112_142140_create_cashflow_table extends Migration
             'description' => $this->string()->comment('Краткое описание действия'),
             'order_id' => $this->integer()->notNull()->comment('Номер заказа'),
             'value' => $this->float()->defaultValue(0)->comment('Сумма(руб.)')
-        ]);
+        ], 'CHARACTER SET utf8');
         $this->createIndex('cashflow_order_id', '{{%cashflow}}', 'order_id');
     }
 
