@@ -36,7 +36,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Admin', 'url' => ['/admin']],
+            ['label' => 'Главная', 'url' => ['/admin']],
             ['label' => 'Магазин', 'items' => [
                 ['label' => 'Настройки', 'url' => ['/admin/shopsettings']],
                 ['label' => 'Пользователи', 'url' => ['/admin/user']],
@@ -64,7 +64,7 @@ AppAsset::register($this);
                 '<li>'
                 . Html::beginForm(['/admin/logout'], 'post', ['class' => 'navbar-form'])
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->name . ')',
+                    'Выход (' . Yii::$app->user->identity->login . ')',
                     ['class' => 'btn btn-link']
                 )
                 . Html::endForm()
@@ -82,6 +82,7 @@ AppAsset::register($this);
         ]) ?>
         <?= $content ?>
     </div>
+
 </div>
 
 <footer class="footer">
