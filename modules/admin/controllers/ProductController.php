@@ -5,9 +5,12 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\models\Product;
 use app\models\ProductSearch;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use app\modules\admin\models\UploadForm;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -93,6 +96,41 @@ class ProductController extends BehaviorsController
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionUpload($id){
+        //https://github.com/perminder-klair/yii2-dropzone
+        $filename = 'file';
+        $uploadPath = Yii::getAlias('@webroot') . '/uploads/';
+
+        if(isset($_FILES[$filename])){
+            $file = UploadedFile::getInstanceByName($filename);
+
+            if($file->saveAs($uploadPath . $file->name)){
+                echo Json::encode($file);
+            }
+        }
+        return false;
+    }
+
+    public function actionImageload(){
+        $model = new UploadForm();
+
+        if(Yii::$app->request->isPost){
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if($model->upload()){
+                print_r($_POST);
+                return;
+            }
+        }
+
+        if(Yii::$app->request->isAjax){
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if($model->upload()){
+                return;
+            }
+        }
+        return $this->render('imageload', ['model' => $model]);
     }
 
     /**
