@@ -14,7 +14,6 @@ use yii\filters\VerbFilter;
  */
 class PaytypeController extends BehaviorsController
 {
-    public $layout = 'main';
     /**
      * @inheritdoc
      */

@@ -1,18 +1,18 @@
 <?php
 
-namespace app\modules\admin\controllers;
+namespace app\modules\admin\modules\products\controllers;
 
 use Yii;
-use app\models\OrderStatus;
+use app\models\Colors;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * OrderstatusController implements the CRUD actions for OrderStatus model.
+ * ColorsController implements the CRUD actions for Colors model.
  */
-class OrderstatusController extends BehaviorsController
+class ColorsController extends BehaviorsController
 {
     /**
      * @inheritdoc
@@ -30,13 +30,13 @@ class OrderstatusController extends BehaviorsController
     }*/
 
     /**
-     * Lists all OrderStatus models.
+     * Lists all Colors models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => OrderStatus::find(),
+            'query' => Colors::find(),
         ]);
 
         return $this->render('index', [
@@ -45,8 +45,8 @@ class OrderstatusController extends BehaviorsController
     }
 
     /**
-     * Displays a single OrderStatus model.
-     * @param integer $id
+     * Displays a single Colors model.
+     * @param string $id
      * @return mixed
      */
     public function actionView($id)
@@ -57,16 +57,16 @@ class OrderstatusController extends BehaviorsController
     }
 
     /**
-     * Creates a new OrderStatus model.
+     * Creates a new Colors model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new OrderStatus();
+        $model = new Colors();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->name]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -75,9 +75,9 @@ class OrderstatusController extends BehaviorsController
     }
 
     /**
-     * Updates an existing OrderStatus model.
+     * Updates an existing Colors model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -85,7 +85,7 @@ class OrderstatusController extends BehaviorsController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->name]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -94,9 +94,9 @@ class OrderstatusController extends BehaviorsController
     }
 
     /**
-     * Deletes an existing OrderStatus model.
+     * Deletes an existing Colors model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -107,15 +107,15 @@ class OrderstatusController extends BehaviorsController
     }
 
     /**
-     * Finds the OrderStatus model based on its primary key value.
+     * Finds the Colors model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return OrderStatus the loaded model
+     * @param string $id
+     * @return Colors the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = OrderStatus::findOne($id)) !== null) {
+        if (($model = Colors::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

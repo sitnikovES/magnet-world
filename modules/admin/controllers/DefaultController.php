@@ -13,7 +13,7 @@ use app\modules\admin\models\LoginForm;
 //class DefaultController extends Controller
 class DefaultController extends BehaviorsController
 {
-    public $layout = 'main';
+    //public $layout = 'main';
     /**
      * Renders the index view for the module
      * @return string

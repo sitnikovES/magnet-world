@@ -14,7 +14,6 @@ use yii\filters\VerbFilter;
  */
 class CashflowController extends Controller
 {
-    public $layout = 'main';
     /**
      * @inheritdoc
      */

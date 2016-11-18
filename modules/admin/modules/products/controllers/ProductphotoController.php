@@ -1,23 +1,24 @@
 <?php
 
-namespace app\modules\admin\controllers;
+namespace app\modules\admin\modules\products\controllers;
 
 use Yii;
-use app\models\OrderStatus;
+use app\models\ProductPhoto;
+//use app\modules\admin\modules\products\models\ProductphotoSearch;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * OrderstatusController implements the CRUD actions for OrderStatus model.
+ * ProductphotoController implements the CRUD actions for ProductPhoto model.
  */
-class OrderstatusController extends BehaviorsController
+class ProductphotoController extends Controller
 {
     /**
      * @inheritdoc
      */
-    /*public function behaviors()
+    public function behaviors()
     {
         return [
             'verbs' => [
@@ -27,25 +28,28 @@ class OrderstatusController extends BehaviorsController
                 ],
             ],
         ];
-    }*/
+    }
 
     /**
-     * Lists all OrderStatus models.
+     * Lists all ProductPhoto models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($product_id)
     {
+        //$searchModel = new ProductphotoSearch();
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider = new ActiveDataProvider([
-            'query' => OrderStatus::find(),
+            'query' => ProductPhoto::find()->where(['product_id' => $product_id]),
         ]);
 
         return $this->render('index', [
+            //'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single OrderStatus model.
+     * Displays a single ProductPhoto model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +61,13 @@ class OrderstatusController extends BehaviorsController
     }
 
     /**
-     * Creates a new OrderStatus model.
+     * Creates a new ProductPhoto model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new OrderStatus();
+        $model = new ProductPhoto();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +79,7 @@ class OrderstatusController extends BehaviorsController
     }
 
     /**
-     * Updates an existing OrderStatus model.
+     * Updates an existing ProductPhoto model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +98,7 @@ class OrderstatusController extends BehaviorsController
     }
 
     /**
-     * Deletes an existing OrderStatus model.
+     * Deletes an existing ProductPhoto model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +111,15 @@ class OrderstatusController extends BehaviorsController
     }
 
     /**
-     * Finds the OrderStatus model based on its primary key value.
+     * Finds the ProductPhoto model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return OrderStatus the loaded model
+     * @return ProductPhoto the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = OrderStatus::findOne($id)) !== null) {
+        if (($model = ProductPhoto::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

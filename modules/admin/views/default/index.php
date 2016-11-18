@@ -14,19 +14,19 @@ use yii\helpers\Html;
         ?>
     </p>
     <p>
-        <label>Товары</label><br>
+        <label><?= Html::a('Товары', Url::to(['products/'])) ?></label><br>
         <?php
-        echo Html::a('Товары', Url::to(['product/']));
+        echo Html::a('Товары', Url::to(['products/product']));
         echo '<br>';
-        echo Html::a('Типы товаров', Url::to(['producttype/']));
+        echo Html::a('Типы товаров', Url::to(['products/producttype/']));
         echo '<br>';
-        echo Html::a('Параметры товаров', Url::to(['productparam/']));
+        echo Html::a('Параметры товаров', Url::to(['products/productparam/']));
         echo '<br>';
-        echo Html::a('Наборы значений параметров товаров', Url::to(['productparamset/']));
+        echo Html::a('Наборы значений параметров товаров', Url::to(['products/productparamset/']));
         echo '<br>';
-        echo Html::a('Темы товаров', Url::to(['productthema/']));
+        echo Html::a('Темы товаров', Url::to(['products/productthema/']));
         echo '<br>';
-        echo Html::a('Цвета наклеек', Url::to(['colors/']));
+        echo Html::a('Цвета наклеек', Url::to(['products/colors/']));
         echo '<br>'; ?>
     </p>
     <p>

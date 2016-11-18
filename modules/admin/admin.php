@@ -19,8 +19,10 @@ class admin extends \yii\base\Module implements BootstrapInterface
     public function init()
     {
         parent::init();
+        $this->layout = 'main';
 
         // custom initialization code goes here
+        \Yii::configure($this, require(__DIR__ . '/config/config.php'));
     }
 
     public function bootstrap($app)

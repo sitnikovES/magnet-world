@@ -15,7 +15,6 @@ use yii\filters\VerbFilter;
  */
 class ShopsettingsController extends BehaviorsController
 {
-    public $layout = 'main';
     /**
      * @inheritdoc
      */

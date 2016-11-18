@@ -1,18 +1,18 @@
 <?php
 
-namespace app\modules\admin\controllers;
+namespace app\modules\admin\modules\products\controllers;
 
 use Yii;
-use app\models\OrderStatus;
-use yii\data\ActiveDataProvider;
+use app\models\Productparam;
+use app\models\ProductparamSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * OrderstatusController implements the CRUD actions for OrderStatus model.
+ * ProductparamController implements the CRUD actions for Productparam model.
  */
-class OrderstatusController extends BehaviorsController
+class ProductparamController extends BehaviorsController
 {
     /**
      * @inheritdoc
@@ -30,22 +30,22 @@ class OrderstatusController extends BehaviorsController
     }*/
 
     /**
-     * Lists all OrderStatus models.
+     * Lists all Productparam models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => OrderStatus::find(),
-        ]);
+        $searchModel = new ProductparamSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single OrderStatus model.
+     * Displays a single Productparam model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class OrderstatusController extends BehaviorsController
     }
 
     /**
-     * Creates a new OrderStatus model.
+     * Creates a new Productparam model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new OrderStatus();
+        $model = new Productparam();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class OrderstatusController extends BehaviorsController
     }
 
     /**
-     * Updates an existing OrderStatus model.
+     * Updates an existing Productparam model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class OrderstatusController extends BehaviorsController
     }
 
     /**
-     * Deletes an existing OrderStatus model.
+     * Deletes an existing Productparam model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class OrderstatusController extends BehaviorsController
     }
 
     /**
-     * Finds the OrderStatus model based on its primary key value.
+     * Finds the Productparam model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return OrderStatus the loaded model
+     * @return Productparam the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = OrderStatus::findOne($id)) !== null) {
+        if (($model = Productparam::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

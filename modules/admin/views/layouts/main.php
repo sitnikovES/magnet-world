@@ -37,17 +37,20 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Главная', 'url' => ['/admin']],
+            ['label' => 'Разработка', 'items' => [
+                ['label' => 'Gii', 'url' => ['/gii']],
+            ]],
             ['label' => 'Магазин', 'items' => [
                 ['label' => 'Настройки', 'url' => ['/admin/shopsettings']],
                 ['label' => 'Пользователи', 'url' => ['/admin/user']],
             ]],
-            ['label' => 'Товары', 'items' => [
-                ['label' => 'Товары', 'url'=>['/admin/product']],
-                ['label' => 'Типы товаров', 'url'=>['/admin/producttype']],
-                ['label' => 'Параметры товаров', 'url'=>['/admin/productparam']],
-                ['label' => 'Ноборы значений параметров товаров', 'url'=>['/admin/productparamset']],
-                ['label' => 'Темы товаров', 'url'=>['/admin/productthema']],
-                ['label' => 'Цвета наклеек', 'url'=>['/admin/colors']],
+            ['label' => 'Работа с товарами', 'items' => [
+                ['label' => 'Список товаров', 'url'=>['/admin/products/product']],
+                ['label' => 'Типы товаров', 'url'=>['/admin/products/producttype']],
+                ['label' => 'Параметры товаров', 'url'=>['/admin/products/productparam']],
+                ['label' => 'Наборы значений параметров товаров', 'url'=>['/admin/products/productparamset']],
+                ['label' => 'Темы товаров', 'url'=>['/admin/products/productthema']],
+                ['label' => 'Цвета наклеек', 'url'=>['/admin/products/colors']],
             ]],
             ['label' => 'Работа с заказами', 'items' => [
                 ['label' => 'Заказы', 'url' => ['/admin/orders']],

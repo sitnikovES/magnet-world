@@ -1,21 +1,23 @@
 <?php
 
-namespace app\modules\admin\controllers;
+namespace app\modules\admin\modules\products\controllers;
 
 use Yii;
-use app\models\Orders;
-use app\models\OrderContent;
-use app\models\Cashflow;
-use app\models\OrdersSearch;
-use yii\web\Controller;
+use app\models\Product;
+use app\models\ProductSearch;
+use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\data\ActiveDataProvider;
+use yii\web\UploadedFile;
+use app\models\ProductPhoto;
+
+//use yii\web\Controller;
+//use yii\filters\VerbFilter;
+//use app\modules\admin\models\UploadForm;
 
 /**
- * OrdersController implements the CRUD actions for Orders model.
+ * ProductController implements the CRUD actions for Product model.
  */
-class OrdersController extends BehaviorsController
+class ProductController extends BehaviorsController
 {
     /**
      * @inheritdoc
@@ -33,12 +35,12 @@ class OrdersController extends BehaviorsController
     }*/
 
     /**
-     * Lists all Orders models.
+     * Lists all Product models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new OrdersSearch();
+        $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -48,51 +50,29 @@ class OrdersController extends BehaviorsController
     }
 
     /**
-     * Displays a single Orders model.
+     * Displays a single Product model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-        $billing = array('in' => 0, 'out' => 0);
-        $dataProvider = new ActiveDataProvider([
-            'query' => OrderContent::find()->where(['order_id' => $id]),
-        ]);
-
-        $dataProviderCashflow = new ActiveDataProvider([
-            'query' => Cashflow::find()->where(['order_id' => $id]),
-        ]);
-
-        foreach($dataProviderCashflow->models as $model){
-            if($model->type == 0){
-                $billing['out'] += $model->value;
-            }
-            if($model->type == 1){
-                $billing['in'] += $model->value;
-            }
-        }
-
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'dataProvider' => $dataProvider,
-            'billing' => [
-                'dataProvider' => $dataProviderCashflow,
-                'billing' => $billing,
-            ],
         ]);
     }
 
     /**
-     * Creates a new Orders model.
+     * Creates a new Product model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Orders();
+        $model = new Product();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            //return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['update', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -101,7 +81,7 @@ class OrdersController extends BehaviorsController
     }
 
     /**
-     * Updates an existing Orders model.
+     * Updates an existing Product model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -119,8 +99,52 @@ class OrdersController extends BehaviorsController
         }
     }
 
+    public function actionUpload($id){
+        $filename = 'file';
+        $uploadPath = Yii::getAlias('@webroot') . '/img/product/' . $id . '/';
+        if(!file_exists($uploadPath)){
+            mkdir($uploadPath);
+        }
+        $uploadPath .= 'demo/';
+        if(!file_exists($uploadPath)){
+            mkdir($uploadPath);
+        }
+        if(isset($_FILES[$filename])){
+            $file = UploadedFile::getInstanceByName($filename);
+
+            if($file->saveAs($uploadPath . $file->name)){
+                $photo = new ProductPhoto();
+                $photo->filename = $file->name;
+                $photo->product_id = $id;
+                $photo->save();
+                echo Json::encode($file);
+            }
+        }
+        return false;
+    }
+
+    /*public function actionImageload(){
+        $model = new UploadForm();
+
+        if(Yii::$app->request->isPost){
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if($model->upload()){
+                print_r($_POST);
+                return;
+            }
+        }
+
+        if(Yii::$app->request->isAjax){
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if($model->upload()){
+                return;
+            }
+        }
+        return $this->render('imageload', ['model' => $model]);
+    }*/
+
     /**
-     * Deletes an existing Orders model.
+     * Deletes an existing Product model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -133,15 +157,15 @@ class OrdersController extends BehaviorsController
     }
 
     /**
-     * Finds the Orders model based on its primary key value.
+     * Finds the Product model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Orders the loaded model
+     * @return Product the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Orders::findOne($id)) !== null) {
+        if (($model = Product::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
