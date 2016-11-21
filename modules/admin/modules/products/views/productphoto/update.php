@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ProductPhoto */
 
-$this->title = 'Update Product Photo: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Product Photos', 'url' => ['index']];
+$this->title = 'Правка описания фото: ' . $model->filename;
+$this->params['breadcrumbs'][] = ['label' => 'Фотогалерея', 'url' => ['index', 'product_id' => $model->product_id]];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Правка описания';
 ?>
 <div class="product-photo-update">
 

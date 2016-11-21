@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Product */
 
-$this->title = $model->name;
+$this->title = $model->producttype->name . ' - ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Работа с товарами', 'url' => ['/admin/products']];
 $this->params['breadcrumbs'][] = ['label' => 'Список товаров', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;

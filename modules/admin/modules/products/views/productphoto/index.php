@@ -6,10 +6,12 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\modules\products\models\ProductphotoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+$product = \app\models\Product::findOne(Yii::$app->request->get('product_id'));
 
 $this->title = 'Фотогалерея';
 $this->params['breadcrumbs'][] = ['label' => 'Работа с товарами', 'url' => ['/admin/products']];
 $this->params['breadcrumbs'][] = ['label' => 'Список товаров', 'url' => ['/admin/products/product']];
+$this->params['breadcrumbs'][] = ['label' => $product->producttype->name . ' - ' . $product->name, 'url' => ['/admin/products/product/view', 'id' => $product->id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="product-photo-index">

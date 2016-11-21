@@ -34,7 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'product_type_id',
                 'filter' => ArrayHelper::map(Producttype::find()->all(), 'id', 'name'),
                 'content' => function($data){
-                    return 'value';
                     return $data->producttype->name;
                 }
             ],
