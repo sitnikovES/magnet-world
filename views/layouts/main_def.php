@@ -23,68 +23,55 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="container" style="height:150px; border-bottom: solid 1px #EEE;">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="row" style="height:50px; background-color: #DDDDDD;">
-                <div class="container">
-                    Регион пользователя
-                </div>
-            </div>
-            <div class="row" style="height:100px; background-color: #EEE;">
-                <div class="container">
-                    <a class="nabar-brand" href="/">Magnet-World.ru</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="container">
-                Поиск по сайту
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <?php
-        NavBar::begin([
-            'options' => [
-                'class' => 'navbar-inverse',
-                //'class' => 'navbar-inverse navbar',
-            ],
-        ]);
-        echo Nav::widget([
-            'options' => ['class' => 'navbar-nav navbar-right'],
-            'items' => [
-                ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'Доставка', 'url' => ['/site/index']],
-                ['label' => 'О магнитрых панелях', 'url' => ['/site/index']],
-                ['label' => 'О нас', 'url' => ['/site/about']],
-                ['label' => 'Контакты', 'url' => ['/site/contact']],
-                ['label' => 'Admin', 'url' => ['/admin/']],
-            ],
-        ]);
-        NavBar::end();
-        ?>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-2" style="background-color: #dddddd; min-height: 300px;">
-            <a href="#">Магнитные панели</a>
-        </div>
-        <div class="col-sm-10">
-            <?= $content ?>
-        </div>
-    </div>
-</div>
 
-
-
-
-<!--
 <div class="wrap">
+    <?php
+    NavBar::begin([
+        'brandLabel' => 'Magnet-World.ru',
+        'brandUrl' => Yii::$app->homeUrl,
+        'options' => [
+            'class' => 'navbar-inverse',
+            //'class' => 'navbar-inverse navbar-fixed-top',
+        ],
+    ]);
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => [
+            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Доставка', 'url' => ['/site/index']],
+            ['label' => 'О магнитрых панелях', 'url' => ['/site/index']],
+            ['label' => 'О нас', 'url' => ['/site/about']],
+            ['label' => 'Контакты', 'url' => ['/site/contact']],
+            ['label' => 'Admin', 'url' => ['/admin/']],
+            /*Yii::$app->user->isGuest ? (
+                ['label' => 'Login', 'url' => ['/site/login']]
+            ) : (
+                '<li>'
+                . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link']
+                )
+                . Html::endForm()
+                . '</li>'
+            )*/
+        ],
+    ]);
+    NavBar::end();
+    ?>
     <div class="container">
+        <form action="" class="navbar-form navbar-right">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="E-mail" value="" />
+                <input type="password" class="form-control" placeholder="Пароль" value="" />
+                <button type="submit" class="btn btn-info">Вход</button>
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
         <div class="container">
            <p>
                <i class="glyphicon glyphicon-user" style="font-size: 300%"></i>
@@ -175,13 +162,13 @@ AppAsset::register($this);
                 </div>
             </div>
         </div>
-
+        <?= $content ?>
     </div>
     <br>
     <br>
 
 </div>
--->
+
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>

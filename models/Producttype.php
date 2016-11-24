@@ -68,4 +68,8 @@ class Producttype extends \yii\db\ActiveRecord
             'weight' => 'Вес (кг/м.кв.)',
         ];
     }
+
+    public function getThemes(){
+        return $this->hasMany(Productthema::className(), ['product_type_id' => 'id']);
+    }
 }

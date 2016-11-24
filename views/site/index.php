@@ -16,8 +16,8 @@ $this->title = 'Мир магнитов';
 
     <div class="body-content">
         <pre>
-
-            </pre>
+            <?php print_r($geo);  ?>
+        </pre>
         <div class="row">
             <div class="col-lg-4">
                 <h2>Heading</h2>
