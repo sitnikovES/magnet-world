@@ -9,8 +9,6 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
-use app\models\Geocidroptim;
-use app\models\Geocities;
 use app\models\Productthema;
 use app\models\Producttype;
 
@@ -65,27 +63,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-
-        $arr = explode('.', $_SERVER['REMOTE_ADDR']);
-        $num = $arr[0] * 256 * 256 * 256 + $arr[1] * 256 * 256 + $arr[2] * 256 + $arr[3];
-
-        $geo = Geocidroptim::find()
-            ->where(['<=', 'block_begin', $num])
-            ->andWhere(['>=', 'block_end', $num])
-            ->with('city')
-            ->asArray()
-            ->limit(1)
-            ->one();
-        if(empty($geo)){
-            $geo = 'Не определено (' . $num . ')';
-        }
-        else {
-            $geo = $geo['city']['region'] . ' - ' . $geo['city']['name'];
-        }
-
-        return $this->render('index', [
-            'geo' => $geo,
-        ]);
+        return $this->render('index');
     }
 
     /**

@@ -8,6 +8,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\srv\Servdata;
 
 AppAsset::register($this);
 ?>
@@ -28,7 +29,7 @@ AppAsset::register($this);
         <div class="col-lg-6">
             <div class="row" style="height:50px; background-color: #DDDDDD;">
                 <div class="container">
-                    Регион пользователя
+                    <?= Servdata::getGeo(); ?>
                 </div>
             </div>
             <div class="row" style="height:100px; background-color: #EEE;">
@@ -71,7 +72,18 @@ AppAsset::register($this);
 <div class="container">
     <div class="row">
         <div class="col-sm-2" style="background-color: #dddddd; min-height: 300px;">
-            <a href="#">Магнитные панели</a>
+            <ul>
+<?php
+foreach(Servdata::leftMenu() as $top_item){
+    echo '<li>' . $top_item['name'] . '</li>';
+    echo '<ul>';
+    foreach($top_item['themes'] as $sub_item){
+        echo '<li>' . $sub_item['name'] . '</li>';
+    }
+    echo '</ul>';
+};
+?>
+            </ul>
         </div>
         <div class="col-sm-10">
             <?= $content ?>
