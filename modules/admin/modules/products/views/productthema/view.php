@@ -40,6 +40,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'keywords',
             'description',
             'text:ntext',
+            [
+                'attribute' => 'Изображение',
+                'format' => 'raw',
+                'value' => '<img src="/img/productthema/' . $model->file_icon . '" style="max-height: 150px;" />',
+            ],
         ],
     ]) ?>
 

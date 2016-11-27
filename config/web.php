@@ -46,6 +46,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/' => 'site/index',
                 'admin/login' => 'admin/default/login',
                 'admin/logout' => 'admin/default/logout',
             ],

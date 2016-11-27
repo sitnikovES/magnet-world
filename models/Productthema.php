@@ -18,9 +18,11 @@ use app\models\Producttype;
  * @property string $keywords
  * @property string $description
  * @property string $text
+ * @property string $file_icon
  */
 class Productthema extends \yii\db\ActiveRecord
 {
+    public $file;
     /**
      * @inheritdoc
      */
@@ -36,7 +38,8 @@ class Productthema extends \yii\db\ActiveRecord
     {
         return [
             [['active', 'pos'], 'integer'],
-            [['text'], 'string'],
+            [['text', 'file_icon'], 'string'],
+            [['file'], 'file'],
             [['name', 'name_translit', 'product_type_id', 'title', 'keywords', 'description'], 'string', 'max' => 255],
         ];
     }
@@ -57,6 +60,8 @@ class Productthema extends \yii\db\ActiveRecord
             'keywords' => 'Ключевые слова',
             'description' => 'Описание страницы',
             'text' => 'Текст',
+            'file' => 'Изображение темы',
+            'file_icon' => 'Изображение темы',
         ];
     }
 

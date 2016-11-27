@@ -8,6 +8,7 @@ use app\models\ProductthemaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProductthemaController implements the CRUD actions for Productthema model.
@@ -56,6 +57,13 @@ class ProductthemaController extends BehaviorsController
         ]);
     }
 
+    public function saveFile($model){
+        if(!file_exists(Yii::getAlias('@webroot') . '/img/productthema')){
+            mkdir(Yii::getAlias('@webroot') . '/img/productthema');
+        }
+        $model->file->saveAs(Yii::getAlias('@webroot') . '/img/productthema/id_' . $model->id . '.' . $model->file->extension);
+    }
+
     /**
      * Creates a new Productthema model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -64,14 +72,18 @@ class ProductthemaController extends BehaviorsController
     public function actionCreate()
     {
         $model = new Productthema();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save()){
+                //Сохранения файла
+                $model->file = UploadedFile::getInstance($model, 'file');
+                $this->saveFile($model->file);
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -85,6 +97,8 @@ class ProductthemaController extends BehaviorsController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $this->saveFile($model);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

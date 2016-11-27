@@ -22,6 +22,8 @@ use app\models\Producttype;
 
     <?= $form->field($model, 'active')->dropDownList(['Нет', 'Да']) ?>
 
+    <?= $form->field($model, 'file')->fileInput() ?>
+
     <?= $form->field($model, 'pos')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>

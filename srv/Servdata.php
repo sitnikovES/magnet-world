@@ -24,7 +24,7 @@ class Servdata {
             ->limit(1)
             ->one();
         if(empty($geo)){
-            $geo = 'Не определено (' . $num . ')';
+            $geo = 'Не определено (' . $_SERVER['REMOTE_ADDR'] . ')';
         }
         else {
             $geo = $geo['city']['region'] . ' - ' . $geo['city']['name'];

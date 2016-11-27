@@ -24,24 +24,16 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="container" style="height:150px; border-bottom: solid 1px #EEE;">
+<div class="container" style="text-align: center; margin-top: 15px; margin-bottom: 15px;">
     <div class="row">
-        <div class="col-lg-6">
-            <div class="row" style="height:50px; background-color: #DDDDDD;">
-                <div class="container">
-                    <?= Servdata::getGeo(); ?>
-                </div>
-            </div>
-            <div class="row" style="height:100px; background-color: #EEE;">
-                <div class="container">
-                    <a class="nabar-brand" href="/">Magnet-World.ru</a>
-                </div>
-            </div>
+        <div class="col-sm-4" style="font-size: 200%">
+                <i class="fa fa-phone"></i>&nbsp;+7 (913) 311-60-49
         </div>
-        <div class="col-lg-6">
-            <div class="container">
-                Поиск по сайту
-            </div>
+        <div class="col-sm-4"><span style="font-size: 250%; color: #5bc0de;">Мир магнитов</span></div>
+        <div class="col-sm-4">
+            <div class="col-md-4"><i class="fa fa-comments-o" style="font-size: 300%"></i>Вопрос-ответ</div>
+            <div class="col-md-4"><i class="fa fa-truck fa-flip-horizontal" style="font-size: 300%"></i>Доставка</div>
+            <div class="col-md-4"><i class="fa fa-shopping-cart" style="font-size: 300%"></i>Корзина(0)</div>
         </div>
     </div>
 </div>
@@ -49,20 +41,21 @@ AppAsset::register($this);
     <div class="row">
         <?php
         NavBar::begin([
+            'brandLabel' => 'Magnet-World.ru',
+            'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar-inverse',
-                //'class' => 'navbar-inverse navbar',
+                //'class' => 'navbar-inverse navbar-fixed-top',
             ],
         ]);
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
-                ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => 'Главная', 'url' => ['/site/index']],
+                ['label' => 'Панели', 'url' => ['/']],
                 ['label' => 'Доставка', 'url' => ['/site/index']],
                 ['label' => 'О магнитрых панелях', 'url' => ['/site/index']],
-                ['label' => 'О нас', 'url' => ['/site/about']],
                 ['label' => 'Контакты', 'url' => ['/site/contact']],
-                ['label' => 'Admin', 'url' => ['/admin/']],
             ],
         ]);
         NavBar::end();
@@ -71,23 +64,7 @@ AppAsset::register($this);
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-sm-2" style="background-color: #dddddd; min-height: 300px;">
-            <ul>
-<?php
-foreach(Servdata::leftMenu() as $top_item){
-    echo '<li>' . $top_item['name'] . '</li>';
-    echo '<ul>';
-    foreach($top_item['themes'] as $sub_item){
-        echo '<li>' . $sub_item['name'] . '</li>';
-    }
-    echo '</ul>';
-};
-?>
-            </ul>
-        </div>
-        <div class="col-sm-10">
-            <?= $content ?>
-        </div>
+        <?= $content ?>
     </div>
 </div>
 
