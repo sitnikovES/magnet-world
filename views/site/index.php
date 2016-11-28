@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Мир магнитов';
+$this->title = 'Магнитный мир';
 ?>
 <div class="site-index">
 

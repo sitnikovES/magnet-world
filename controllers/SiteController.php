@@ -120,6 +120,19 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    
+    /**
+     * Displays catalog page.
+     *
+     * @return string
+     */
+    public function actionCatalog()
+    {
+        $products = Producttype::find()->where(['{{%product_type}}.active' => 1, '{{%product_thema}}.active' => 1])->joinWith('themes', true, 'RIGHT JOIN')->orderBy(['{{%product_thema}}.pos' => 'SORT_ASK', '{{%product_thema}}.name' => 'SORT_ASK'])->asArray()->all();
+        return $this->render('catalog', [
+            'products' => $products,
+        ]);
+    }
 
     /**
      * Displays about page.

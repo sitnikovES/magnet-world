@@ -29,11 +29,11 @@ AppAsset::register($this);
         <div class="col-sm-4" style="font-size: 200%">
                 <i class="fa fa-phone"></i>&nbsp;+7 (913) 311-60-49
         </div>
-        <div class="col-sm-4"><span style="font-size: 250%; color: #5bc0de;">Мир магнитов</span></div>
+        <div class="col-sm-4"><span style="font-size: 250%; color: #5bc0de;">Магнитный мир</span></div>
         <div class="col-sm-4">
-            <div class="col-md-4"><i class="fa fa-comments-o" style="font-size: 300%"></i>Вопрос-ответ</div>
-            <div class="col-md-4"><i class="fa fa-truck fa-flip-horizontal" style="font-size: 300%"></i>Доставка</div>
-            <div class="col-md-4"><i class="fa fa-shopping-cart" style="font-size: 300%"></i>Корзина(0)</div>
+            <div class="col-md-4"><i class="fa fa-comments-o" style="font-size: 300%"></i>&nbsp;Вопрос-ответ</div>
+            <div class="col-md-4"><i class="fa fa-truck fa-flip-horizontal" style="font-size: 300%"></i>&nbsp;Доставка</div>
+            <div class="col-md-4"><i class="fa fa-shopping-cart" style="font-size: 300%"></i>&nbsp;Корзина(0)</div>
         </div>
     </div>
 </div>
@@ -52,9 +52,9 @@ AppAsset::register($this);
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
                 ['label' => 'Главная', 'url' => ['/site/index']],
-                ['label' => 'Панели', 'url' => ['/']],
-                ['label' => 'Доставка', 'url' => ['/site/index']],
-                ['label' => 'О магнитрых панелях', 'url' => ['/site/index']],
+                ['label' => 'Каталог', 'url' => ['/site/catalog']],
+                ['label' => 'Доставка', 'url' => ['/site/dostavka']],
+                ['label' => 'Оплата', 'url' => ['/site/oplata']],
                 ['label' => 'Контакты', 'url' => ['/site/contact']],
             ],
         ]);
@@ -173,7 +173,7 @@ AppAsset::register($this);
 -->
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Магнитный мир <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

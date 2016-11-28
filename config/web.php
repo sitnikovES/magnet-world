@@ -47,6 +47,8 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '/' => 'site/index',
+                '/catalog' => 'site/catalog',
+                '/catalog/eda' => 'site/thema?id=1',
                 'admin/login' => 'admin/default/login',
                 'admin/logout' => 'admin/default/logout',
             ],
