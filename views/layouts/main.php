@@ -24,7 +24,7 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="container" style="text-align: center; margin-top: 15px; margin-bottom: 15px;">
+<div class="container" style="text-align: center; margin-top: 20px; margin-bottom: 15px;">
     <div class="row">
         <div class="col-sm-4" style="font-size: 200%">
                 <i class="fa fa-phone"></i>&nbsp;+7 (913) 311-60-49

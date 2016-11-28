@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'keywords',
             'description',
             'text:ntext',
+            'file_icon',
             [
                 'attribute' => 'Изображение',
                 'format' => 'raw',

@@ -61,7 +61,9 @@ class ProductthemaController extends BehaviorsController
         if(!file_exists(Yii::getAlias('@webroot') . '/img/productthema')){
             mkdir(Yii::getAlias('@webroot') . '/img/productthema');
         }
-        $model->file->saveAs(Yii::getAlias('@webroot') . '/img/productthema/id_' . $model->id . '.' . $model->file->extension);
+        $filename = 'id_' . $model->id . '.' . $model->file->extension;
+        $model->file->saveAs(Yii::getAlias('@webroot') . '/img/productthema/' . $filename);
+        Productthema::updateAll(['file_icon' => $filename], 'id = ' . $model->id);
     }
 
     /**
@@ -76,7 +78,9 @@ class ProductthemaController extends BehaviorsController
             if($model->save()){
                 //Сохранения файла
                 $model->file = UploadedFile::getInstance($model, 'file');
-                $this->saveFile($model->file);
+                if($model->file){
+                    $this->saveFile($model);
+                }
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -98,7 +102,9 @@ class ProductthemaController extends BehaviorsController
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->file = UploadedFile::getInstance($model, 'file');
-            $this->saveFile($model);
+            if($model->file){
+                $this->saveFile($model);
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

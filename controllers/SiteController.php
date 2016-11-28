@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Productthema;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -9,7 +10,6 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
-use app\models\Productthema;
 use app\models\Producttype;
 
 class SiteController extends Controller
@@ -63,7 +63,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        //$products = Producttype::find()->where(['active' => 1])->with('themes')->orderBy(['pos' => 'SORT_ASK', 'NAME' => 'SORT_ASK'])->asArray()->all();
+        $products = Producttype::find()->where(['{{%product_type}}.active' => 1, '{{%product_thema}}.active' => 1])->joinWith('themes', true, 'RIGHT JOIN')->orderBy(['{{%product_thema}}.pos' => 'SORT_ASK', '{{%product_thema}}.name' => 'SORT_ASK'])->asArray()->all();
+
+        return $this->render('index', [
+            'products' => $products,
+        ]);
     }
 
     /**
