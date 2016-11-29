@@ -52,13 +52,9 @@ use app\srv\Image;
     <div class="col-md-4">
         <pre>
         <?php
-        //$image = new Image(Yii::getAlias('@webroot' . '/img/74.gif'));
-        $image = new Image(Yii::getAlias('@webroot') . '/img/test_image.jpg');
-        //$image = new Image(Yii::getAlias('@webroot' . '/img/test.txt'));
-        print_r($image);
-        $image->setMinSize(450);
-        //$image->crop(300, 300);
-        unset($image);
+        Image::crop(Yii::getAlias('@webroot') . '/img/test_image.jpg', 350, 350);
+        Image::setHeight(Yii::getAlias('@webroot') . '/img/test_image.jpg', 350);
+        Image::setWidth(Yii::getAlias('@webroot') . '/img/test_image.jpg', 350);
         ?>
         </pre>
     </div>
