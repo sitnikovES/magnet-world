@@ -5,9 +5,7 @@ namespace app\modules\admin\modules\products\controllers;
 use Yii;
 use app\models\Producttype;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ProducttypeController implements the CRUD actions for Producttype model.

@@ -5,9 +5,7 @@ namespace app\modules\admin\modules\products\controllers;
 use Yii;
 use app\models\Colors;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ColorsController implements the CRUD actions for Colors model.

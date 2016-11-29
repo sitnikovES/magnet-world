@@ -5,9 +5,7 @@ namespace app\modules\admin\modules\products\controllers;
 use Yii;
 use app\models\Productthema;
 use app\models\ProductthemaSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 
 /**
@@ -64,6 +62,8 @@ class ProductthemaController extends BehaviorsController
         $filename = 'id_' . $model->id . '.' . $model->file->extension;
         $model->file->saveAs(Yii::getAlias('@webroot') . '/img/productthema/' . $filename);
         Productthema::updateAll(['file_icon' => $filename], 'id = ' . $model->id);
+
+
     }
 
     /**

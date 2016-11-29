@@ -5,9 +5,7 @@ namespace app\modules\admin\modules\products\controllers;
 use Yii;
 use app\models\ProductParamSet;
 use app\models\ProductParamSetSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ProductParamSetController implements the CRUD actions for ProductParamSet model.

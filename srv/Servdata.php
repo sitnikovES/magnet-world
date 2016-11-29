@@ -35,4 +35,4 @@ class Servdata {
     static function leftMenu(){
         return Producttype::find()->where(['active' => 1])->with('themes')->orderBy(['pos' => 'SORT_ASK', 'NAME' => 'SORT_ASK'])->asArray()->all();
     }
-} 
+}

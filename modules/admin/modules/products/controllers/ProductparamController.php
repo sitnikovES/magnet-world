@@ -5,9 +5,7 @@ namespace app\modules\admin\modules\products\controllers;
 use Yii;
 use app\models\Productparam;
 use app\models\ProductparamSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ProductparamController implements the CRUD actions for Productparam model.

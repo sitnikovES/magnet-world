@@ -4,7 +4,6 @@ namespace app\modules\admin\modules\products\controllers;
 
 use Yii;
 use app\models\ProductPhoto;
-//use app\modules\admin\modules\products\models\ProductphotoSearch;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
