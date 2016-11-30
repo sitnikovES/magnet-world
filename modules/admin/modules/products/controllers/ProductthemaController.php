@@ -7,27 +7,13 @@ use app\models\Productthema;
 use app\models\ProductthemaSearch;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
+use app\srv\Image;
 
 /**
  * ProductthemaController implements the CRUD actions for Productthema model.
  */
 class ProductthemaController extends BehaviorsController
 {
-    /**
-     * @inheritdoc
-     */
-    /*public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }*/
-
     /**
      * Lists all Productthema models.
      * @return mixed
@@ -61,7 +47,10 @@ class ProductthemaController extends BehaviorsController
         }
         $filename = 'id_' . $model->id . '.' . $model->file->extension;
         $model->file->saveAs(Yii::getAlias('@webroot') . '/img/productthema/' . $filename);
-        Productthema::updateAll(['file_icon' => $filename], 'id = ' . $model->id);
+
+        $file_icon = basename(Image::crop(Yii::getAlias('@webroot') . '/img/productthema/' . $filename, 350, 350));
+
+        Productthema::updateAll(['file_icon' => $file_icon], 'id = ' . $model->id);
 
 
     }

@@ -27,6 +27,8 @@ $this->registerAssetBundle(\app\modules\admin\assets\DropzoneAsset::className())
 
                     <?php if(!$model->isNewRecord){ ?>
 
+                        <?= $form->field($model, 'file')->fileInput(); ?>
+
                         <?= $form->field($model, 'product_thema_id')->dropDownList(ArrayHelper::map(Productthema::find()->where(['product_type_id' => $model->product_type_id])->all(), 'id', 'name')) ?>
 
                         <?= $form->field($model, 'active')->dropDownList(['Нет', 'Да']) ?>

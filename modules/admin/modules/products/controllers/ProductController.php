@@ -9,6 +9,7 @@ use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 use app\models\ProductPhoto;
+use app\srv\Image;
 
 //use yii\web\Controller;
 //use yii\filters\VerbFilter;
@@ -66,11 +67,36 @@ class ProductController extends BehaviorsController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+
+    public function saveFile($model){
+        if(!file_exists(Yii::getAlias('@webroot') . '/img/product')){
+            mkdir(Yii::getAlias('@webroot') . '/img/product');
+        }
+
+        if(!file_exists(Yii::getAlias('@webroot') . '/img/product/' . $model->id)){
+            mkdir(Yii::getAlias('@webroot') . '/img/product/' . $model->id);
+        }
+        $filename = 'id_' . $model->id . '.' . $model->file->extension;
+        $model->file->saveAs(Yii::getAlias('@webroot') . '/img/product/' . $model->id . '/' . $filename);
+
+        $file_icon = basename(Image::crop(Yii::getAlias('@webroot') . '/img/product/' . $model->id . '/' . $filename, 350, 350));
+        basename(Image::crop(Yii::getAlias('@webroot') . '/img/product/' . $model->id . '/' . $filename, 500, 500));
+
+        Product::updateAll(['image' => $file_icon], 'id = ' . $model->id);
+    }
+
     public function actionCreate()
     {
         $model = new Product();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if(!file_exists(Yii::getAlias('@webroot') . '/img/product')){
+                mkdir(Yii::getAlias('@webroot') . '/img/product');
+            }
+            if(!file_exists(Yii::getAlias('@webroot') . '/img/product/' . $model->id)){
+                mkdir(Yii::getAlias('@webroot') . '/img/product/' . $model->id);
+            }
+
             //return $this->redirect(['view', 'id' => $model->id]);
             return $this->redirect(['update', 'id' => $model->id]);
         } else {
@@ -91,6 +117,10 @@ class ProductController extends BehaviorsController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            if($model->file){
+                $this->saveFile($model);
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

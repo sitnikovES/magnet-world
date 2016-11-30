@@ -15,7 +15,7 @@ class Image {
                 $result = array();
                 $result['width'] = $tmp[0];
                 $result['height'] = $tmp[1];
-                $result['channels'] = $tmp['channels'];
+                //$result['channels'] = $tmp['channels'];
                 $result['bits'] = $tmp['bits'];
                 $result['mime'] = $tmp['mime'];
                 return $result;
@@ -102,6 +102,7 @@ class Image {
             $fileinfo['width'] - $x_offset * 2,
             $fileinfo['height'] - $y_offset * 2);
         $func = 'image' . explode('/', $fileinfo['mime'])[1];
-        return $func($new_image, dirname($filename) . '/' . $fl[0] . '_' . $width . 'x' . $height . '.' . $fl[1]);
+        $func($new_image, dirname($filename) . '/' . $fl[0] . '_' . $width . 'x' . $height . '.' . $fl[1]);
+        return dirname($filename) . '/' . $fl[0] . '_' . $width . 'x' . $height . '.' . $fl[1];
     }
 }
