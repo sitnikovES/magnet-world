@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 use app\models\ProductPhoto;
 use app\srv\Image;
+use app\models\Imagesize;
 
 //use yii\web\Controller;
 //use yii\filters\VerbFilter;
@@ -76,11 +77,33 @@ class ProductController extends BehaviorsController
         if(!file_exists(Yii::getAlias('@webroot') . '/img/product/' . $model->id)){
             mkdir(Yii::getAlias('@webroot') . '/img/product/' . $model->id);
         }
+
         $filename = 'id_' . $model->id . '.' . $model->file->extension;
         $model->file->saveAs(Yii::getAlias('@webroot') . '/img/product/' . $model->id . '/' . $filename);
+        $file_icon = $filename;
+        $images = Imagesize::find()->where(['some_id' => $model->product_type_id ])->orderBy('height')->asArray()->all();
+        if(count($images)){
+            $i = false;
+            foreach ($images as $image){
+                if(!$i){
+                    $i = true;
+                    $file_icon = basename(
+                        Image::crop(Yii::getAlias('@webroot') . '/img/product/' . $model->id . '/' . $filename,
+                        $image['width'],
+                        $image['height']));
+                }
+                else {
+                    Image::crop(
+                        Yii::getAlias('@webroot') . '/img/product/' . $model->id . '/' . $filename,
+                        $image['width'],
+                        $image['height']);
+                }
+            }
+        }
 
-        $file_icon = basename(Image::crop(Yii::getAlias('@webroot') . '/img/product/' . $model->id . '/' . $filename, 350, 350));
-        basename(Image::crop(Yii::getAlias('@webroot') . '/img/product/' . $model->id . '/' . $filename, 500, 500));
+
+        //$file_icon = basename(Image::crop(Yii::getAlias('@webroot') . '/img/product/' . $model->id . '/' . $filename, 350, 350));
+
 
         Product::updateAll(['image' => $file_icon], 'id = ' . $model->id);
     }

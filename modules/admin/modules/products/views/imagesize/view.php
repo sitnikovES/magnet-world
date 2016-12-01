@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Imagesize */
 
-$this->title = $model->id;
+$this->title = 'Запись № ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Работа с товарами', 'url' => ['/admin/products']];
 $this->params['breadcrumbs'][] = ['label' => 'Размеры подгружаемых фото', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;

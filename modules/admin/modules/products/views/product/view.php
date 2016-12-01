@@ -24,6 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            [
+                'attribute' => 'file',
+                'format' => 'raw',
+                'value' => '<img src="' . '/img/product/' . $model->id . '/' . $model->image . '" /> ' . $model->image,
+            ],
             //'id',
             'name',
             //'product_type_id',

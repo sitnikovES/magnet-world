@@ -14,9 +14,9 @@ use app\models\Producttype;
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'cat')->hiddenInput(['value' => 1]) ?>
+        <?= $form->field($model, 'cat')->hiddenInput(['value' => 1])->label(false) ?>
 
-        <?= $form->field($model, 'some_id')->dropDownList(ArrayHelper::map(Producttype::find()->all(), 'id', 'name')) ?>
+        <?= $form->field($model, 'some_id')->dropDownList(ArrayHelper::map(Producttype::find()->all(), 'id', 'name'))->label('Тип товара') ?>
 
         <?= $form->field($model, 'width')->textInput() ?>
 

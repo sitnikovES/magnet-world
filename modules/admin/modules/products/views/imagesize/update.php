@@ -5,10 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Imagesize */
 
-$this->title = 'Update Imagesize: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Imagesizes', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Редактирование: Запись № ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Работа с товарами', 'url' => ['/admin/products']];
+$this->params['breadcrumbs'][] = ['label' => 'Размеры подгружаемых фото', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Запись № ' . $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Редактирование';
 ?>
 <div class="imagesize-update">
 

@@ -46,4 +46,8 @@ class Imagesize extends \yii\db\ActiveRecord
             'height' => 'Высота изображения',
         ];
     }
+
+    public function getProducttype(){
+        return $this->hasOne(Producttype::className(), ['id' => 'some_id']);
+    }
 }

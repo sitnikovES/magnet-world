@@ -26,12 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
             //'cat',
             [
                 'attribute' => 'some_id',
-                'header' => 'Тип товара',
+                'label' => 'Тип товара',
                 'content' => function($data){
-                    return $data->some_id;
+                    return $data->producttype->name;
                 },
             ],
-            'some_id',
             'width',
             'height',
 
