@@ -51,6 +51,7 @@ AppAsset::register($this);
                 ['label' => 'Наборы значений параметров товаров', 'url'=>['/admin/products/productparamset']],
                 ['label' => 'Темы товаров', 'url'=>['/admin/products/productthema']],
                 ['label' => 'Цвета наклеек', 'url'=>['/admin/products/colors']],
+                ['label' => 'Размеры подгружаемых фото', 'url'=>['/admin/products/imagesize']],
             ]],
             ['label' => 'Работа с заказами', 'items' => [
                 ['label' => 'Заказы', 'url' => ['/admin/orders']],
