@@ -2,9 +2,11 @@
 
 namespace app\modules\admin\modules\products\controllers;
 
+use app\models\ProductSimilar;
 use Yii;
 use app\models\Product;
 use app\models\ProductSearch;
+use yii\data\ActiveDataProvider;
 use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
@@ -58,8 +60,12 @@ class ProductController extends BehaviorsController
      */
     public function actionView($id)
     {
+        $dataProvider = new ActiveDataProvider([
+            'query' => ProductSimilar::find()->where(['product_id' => $id]),
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'similarProducts' => $dataProvider,
         ]);
     }
 
