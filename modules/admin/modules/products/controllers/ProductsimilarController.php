@@ -66,7 +66,7 @@ class ProductsimilarController extends Controller
         $model = new ProductSimilar();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->render(['/product/view', 'id' => $model->product_id]);
+            return $this->redirect(['product/view', 'id' => $model->product_id]);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
 
@@ -105,9 +105,11 @@ class ProductsimilarController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $product_id = $model->product_id;
+        $model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['product/view?id=' . $product_id]);
     }
 
     /**

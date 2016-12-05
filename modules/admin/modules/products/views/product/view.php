@@ -48,13 +48,37 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= GridView::widget([
             'dataProvider' => $similarProducts,
             'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
+                //['class' => 'yii\grid\SerialColumn'],
 
-                'id',
-                'product_id',
-                'similar_product_id',
+                //'id',
+                //'product_id',
+                [
+                    'attribute' => 'similar_product_id',
+                    'content' => function($data){
+                        return $data->similar->name;
+                    }
+                ],
+                [
+                    'attribute' => 'similar_product_id',
+                    'header' => 'Изображение',
+                    'format' => 'raw',
+                    'content' => function($data){
+                        return '<img height="100px" src="' . '/img/product/' . $data->similar_product_id . '/' . $data->similar->image . '" /> ';
+                        return $data->similar->name;
+                    }
+                ],
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template' => '{delete}',
+                    'buttons' => [
+                        'delete' => function ($url,$data) {
+                            return Html::a(
+                                '<span class="glyphicon glyphicon-trash"></span>',
+                                ['productsimilar/delete', 'id' => $data->id], ['data-method'=>'post']);
+                        },
+                    ],
 
-                ['class' => 'yii\grid\ActionColumn'],
+                ],
             ],
         ]); ?>
     </p>

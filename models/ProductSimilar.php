@@ -42,4 +42,8 @@ class ProductSimilar extends \yii\db\ActiveRecord
             'similar_product_id' => 'Похожий товар',
         ];
     }
+
+    public function getSimilar(){
+        return $this->hasOne(Product::className(), ['id' => 'similar_product_id']);
+    }
 }
