@@ -22,6 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
         echo Html::a('Темы товаров', Url::to(['productthema/']));
         echo '<br>';
         echo Html::a('Цвета наклеек', Url::to(['colors/']));
-        echo '<br>'; ?>
+        echo '<br>';
+        echo Html::a('Популярные', Url::to(['productpopular/']));
+        echo '<br>';?>
     </p>
 </div>

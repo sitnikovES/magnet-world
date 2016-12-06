@@ -29,6 +29,8 @@ use app\srv\Image;
             echo Html::a('Темы товаров', Url::to(['products/productthema/']));
             echo '<br>';
             echo Html::a('Цвета наклеек', Url::to(['products/colors/']));
+            echo '<br>';
+            echo Html::a('Популярные', Url::to(['products/productpopular/']));
             echo '<br>'; ?>
         </p>
         <p>

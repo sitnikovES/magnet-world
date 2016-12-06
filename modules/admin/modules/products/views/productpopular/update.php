@@ -5,10 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ProductPopular */
 
-$this->title = 'Update Product Popular: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Product Populars', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Запись № ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Работа с товарами', 'url' => ['/admin/products']];
+$this->params['breadcrumbs'][] = ['label' => 'Популярные', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Запись № ' . $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Редактирование';
 ?>
 <div class="product-popular-update">
 

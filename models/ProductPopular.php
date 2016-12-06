@@ -40,4 +40,8 @@ class ProductPopular extends \yii\db\ActiveRecord
             'product_id' => 'Продукт',
         ];
     }
+
+    public function getProduct(){
+        return $this->hasOne(Product::className(), ['id' => 'product_id']);
+    }
 }

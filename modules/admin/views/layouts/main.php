@@ -52,6 +52,7 @@ AppAsset::register($this);
                 ['label' => 'Темы товаров', 'url'=>['/admin/products/productthema']],
                 ['label' => 'Цвета наклеек', 'url'=>['/admin/products/colors']],
                 ['label' => 'Размеры подгружаемых фото', 'url'=>['/admin/products/imagesize']],
+                ['label' => 'Популярные', 'url'=>['/admin/products/productpopular']],
             ]],
             ['label' => 'Работа с заказами', 'items' => [
                 ['label' => 'Заказы', 'url' => ['/admin/orders']],

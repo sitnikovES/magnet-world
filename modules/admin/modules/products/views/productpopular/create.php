@@ -6,8 +6,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ProductPopular */
 
-$this->title = 'Create Product Popular';
-$this->params['breadcrumbs'][] = ['label' => 'Product Populars', 'url' => ['index']];
+$this->title = 'Новая  запись';
+$this->params['breadcrumbs'][] = ['label' => 'Работа с товарами', 'url' => ['/admin/products']];
+$this->params['breadcrumbs'][] = ['label' => 'Популярные', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="product-popular-create">

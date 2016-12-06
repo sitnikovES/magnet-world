@@ -12,9 +12,10 @@ class m161206_040031_create_product_popular_table extends Migration
      */
     public function up()
     {
-        $this->createTable('product_popular', [
+        $this->createTable('{{%product_popular}}', [
             'id' => $this->primaryKey(),
-        ]);
+            'product_id' => $this->integer()->comment('Продукт'),
+        ], 'CHARACTER SET utf8');
     }
 
     /**
@@ -22,6 +23,6 @@ class m161206_040031_create_product_popular_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('product_popular');
+        $this->dropTable('{{%product_popular}}');
     }
 }

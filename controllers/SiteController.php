@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Product;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -62,11 +63,23 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        //$products = Producttype::find()->where(['active' => 1])->with('themes')->orderBy(['pos' => 'SORT_ASK', 'NAME' => 'SORT_ASK'])->asArray()->all();
-        $products = Producttype::find()->where(['{{%product_type}}.active' => 1, '{{%product_thema}}.active' => 1])->joinWith('themes', true, 'RIGHT JOIN')->orderBy(['{{%product_thema}}.pos' => 'SORT_ASK', '{{%product_thema}}.name' => 'SORT_ASK'])->asArray()->all();
+        //Новинки
+        $new_product = Product::find()->where(['{{%product}}.active' => 1])->joinWith('producttype', true, 'LEFT JOIN')->limit(3)->orderBy('id DESC')->asArray()->all();
+
+        //Популярные
+        $pop_product = Product::find()
+            ->where(['{{%product}}.active' => 1])
+            ->joinWith('producttype', true, 'LEFT JOIN')
+            ->where('{{%product}}.id IN (SELECT product_id FROM {{%product_popular}})')
+            //->where(['{{%product}}.id' => [1, 4, 5]])
+            ->limit(3)
+            ->orderBy('id DESC')
+            ->asArray()
+            ->all();
 
         return $this->render('index', [
-            'products' => $products,
+            'pop_product' => $pop_product,
+            'new_product' => $new_product,
         ]);
     }
 

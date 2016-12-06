@@ -54,8 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 //'product_id',
                 [
                     'attribute' => 'similar_product_id',
+                    'format' => 'raw',
                     'content' => function($data){
-                        return $data->similar->name;
+                        return Html::a($data->similar->name, ['product/view', 'id' => $data->similar_product_id]);
                     }
                 ],
                 [
