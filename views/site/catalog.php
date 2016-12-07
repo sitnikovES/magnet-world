@@ -12,11 +12,11 @@ $this->title = 'Каталог магнитных панелей';
             foreach($products as $product){
                 foreach($product['themes'] as $theme){ if($theme['active']){ ?>
                     <div class="col-lg-4 col-md-6" style="text-align: center;">
-                        <a href="#">
+                        <a href="?theme=<?= $theme['id'] ?>">
                             <img src="/img/productthema/<?= $theme['file_icon'] ?>" style="height:350px; width:350px;" />
                         </a>
                         <div style="margin-top: -34px;">
-                            <a href="/"><button style="color: #FFF; border:0; height: 34px; width: 350px; background-color: rgba(0,0,0,0.5);"><?= $theme['name'] ?></button></a>
+                            <a href="?theme=<?= $theme['id'] ?>"><button style="color: #FFF; border:0; height: 34px; width: 350px; background-color: rgba(0,0,0,0.5);"><?= $theme['name'] ?></button></a>
                         </div><p></p>
                     </div>
                 <?php }}} ?>

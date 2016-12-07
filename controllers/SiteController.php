@@ -3,7 +3,9 @@
 namespace app\controllers;
 
 use app\models\Product;
+use app\models\Productthema;
 use Yii;
+use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -140,10 +142,35 @@ class SiteController extends Controller
      */
     public function actionCatalog()
     {
-        $products = Producttype::find()->where(['{{%product_type}}.active' => 1, '{{%product_thema}}.active' => 1])->joinWith('themes', true, 'RIGHT JOIN')->orderBy(['{{%product_thema}}.pos' => 'SORT_ASK', '{{%product_thema}}.name' => 'SORT_ASK'])->asArray()->all();
-        return $this->render('catalog', [
-            'products' => $products,
-        ]);
+        if(Yii::$app->request->get('theme')){
+            $id = Yii::$app->request->get('theme');
+            $theme = Productthema::find()
+                ->where(['id' => $id])
+                ->asArray()
+                ->one();
+            $type = Producttype::find()
+                ->where(['id' => $theme['product_type_id']])
+                ->asArray()
+                ->one();
+
+            $products = Product::find()
+                ->where(['active' => 1, 'product_thema_id' => $theme['id']])
+                ->asArray()
+                ->all();
+
+            return $this->render('themaproductlist',[
+                'theme' => $theme,
+                'type' => $type,
+                'products' => $products,
+            ]);
+        }
+        else {
+            $products = Producttype::find()->where(['{{%product_type}}.active' => 1, '{{%product_thema}}.active' => 1])->joinWith('themes', true, 'RIGHT JOIN')->orderBy(['{{%product_thema}}.pos' => 'SORT_ASK', '{{%product_thema}}.name' => 'SORT_ASK'])->asArray()->all();
+            return $this->render('catalog', [
+                'products' => $products,
+            ]);
+        }
+
     }
 
     /**
