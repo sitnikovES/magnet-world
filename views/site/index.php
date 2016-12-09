@@ -41,10 +41,6 @@ $this->title = 'Магнитный мир';
                 </div>
             <?php } ?>
         </div>
-
-        <pre>
-            <?php print_r($pop_product); ?>
-        </pre>
     </div>
 
 </div>
