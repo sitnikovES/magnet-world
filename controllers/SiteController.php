@@ -11,7 +11,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-
+use app\models\Postcompany;
 use app\models\Producttype;
 
 class SiteController extends Controller
@@ -181,5 +181,30 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionDostavka()
+    {
+        $fixed = array();
+        $fixed_nl = array();
+        $free = array();
+        $free_nl = array();
+        $postcompany = Postcompany::find()->where(['active' => 1])->orderBy('price, name')->asArray()->all();
+        foreach ($postcompany as $post){
+            if($post['price'] == 0){
+                array_push($free, $post);
+                array_push($free_nl, $post['name']);
+            }
+            else {
+                array_push($fixed, $post);
+                array_push($fixed_nl, $post['name']);
+            }
+        }
+        return $this->render('dostavka', [
+            'fixed' => $fixed,
+            'fixed_nl' => $fixed_nl,
+            'free' => $free,
+            'free_nl' => $free_nl,
+        ]);
     }
 }

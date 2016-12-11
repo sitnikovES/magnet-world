@@ -46,8 +46,10 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '/' => 'site/index',
+                '' => 'site/index',
                 '/catalog' => 'site/catalog',
+                '/dostavka' => 'site/dostavka',
+                //'<action>' => 'site/<action>',
                 '/catalog/eda' => 'site/thema?id=1',
                 'admin/login' => 'admin/default/login',
                 'admin/logout' => 'admin/default/logout',

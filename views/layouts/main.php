@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\srv\Servdata;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -31,9 +32,18 @@ AppAsset::register($this);
         </div>
         <div class="col-sm-4"><span style="font-size: 250%; color: #5bc0de;">Магнитный мир</span></div>
         <div class="col-sm-4">
-            <div class="col-md-4"><i class="fa fa-comments-o" style="font-size: 300%"></i>&nbsp;Вопрос-ответ</div>
-            <div class="col-md-4"><i class="fa fa-truck fa-flip-horizontal" style="font-size: 300%"></i>&nbsp;Доставка</div>
-            <div class="col-md-4"><i class="fa fa-shopping-cart" style="font-size: 300%"></i>&nbsp;Корзина(0)</div>
+            <div class="col-md-4">
+                <?=  Html::a('<i class="fa fa-comments-o" style="font-size: 300%"></i>&nbsp;Вопрос-ответ</div>',
+                    Url::to(['site/dostavka'])) ?>
+            <div class="col-md-4">
+                <?= Html::a('<i class="fa fa-truck fa-flip-horizontal" style="font-size: 300%"></i>&nbsp;Доставка',
+                    Url::to(['site/dostavka'])) ?>
+
+            </div>
+            <div class="col-md-4">
+               <?=  Html::a('<i class="fa fa-shopping-cart" style="font-size: 300%"></i>&nbsp;Корзина(0)',
+                   Url::to(['site/basket'])) ?>
+            </div>
         </div>
     </div>
 </div>

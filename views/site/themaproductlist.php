@@ -24,9 +24,6 @@ $this->title = 'Каталог магнитных панелей';
                         </div><p></p>
             </div>
         <?php } ?>
-            <pre>
-                <?php print_r($theme); print_r($type); print_r($products); ?>
-            </pre>
         </div>
     </div>
 </div>

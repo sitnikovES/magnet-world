@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use app\models\Producttype;
+use app\models\Productthema;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductSearch */
@@ -29,7 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'name',
-            //'product_type_id',
             [
                 'attribute' => 'product_type_id',
                 'filter' => ArrayHelper::map(Producttype::find()->all(), 'id', 'name'),
@@ -37,9 +37,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->producttype->name;
                 }
             ],
+            [
+                'attribute' => 'product_thema_id',
+                'filter' => ArrayHelper::map(Productthema::find()->all(), 'id', 'name'),
+                'content' => function($data){
+                    return $data->thema->name;
+                }
+            ],
             //'active:boolean',
             [
                 'attribute' => 'active',
+                'filter' => ['Нет', 'Да'],
                 'format' => 'boolean',
             ],
             //'name_translit',

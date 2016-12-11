@@ -37,8 +37,10 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_type_id', 'active', 'product_thema_id'], 'integer'],
+            [['product_type_id', 'name'], 'required'],
+            [['active', 'product_thema_id'], 'integer'],
             //[['product_type_id', 'active', 'product_thema_id', 'name_translit'], 'required'],
+            [['name'], 'unique'],
             [['text', 'image'], 'string'],
             [['file'], 'file'],
             [['name', 'name_translit', 'title', 'keywords', 'description'], 'string', 'max' => 255],
@@ -71,7 +73,7 @@ class Product extends \yii\db\ActiveRecord
         return $this->hasOne(Producttype::className(), ['id' => 'product_type_id']);
     }
 
-    /*public function getThema(){
+    public function getThema(){
         return $this->hasOne(Productthema::className(), ['id' => 'product_thema_id']);
-    }*/
+    }
 }
