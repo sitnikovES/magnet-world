@@ -8,6 +8,8 @@
 
 namespace app\srv;
 
+use Yii;
+
 class Image {
     static private function getImageInfo($filename){
         if(file_exists($filename)){
@@ -91,6 +93,9 @@ class Image {
         $new_image = imagecreatetruecolor($width, $height);
         $cur_image = $func($filename);
 
+        $logo = imagecreatefrompng(Yii::getAlias('@webroot') . '/img/magnetworld.png');
+
+
         imagecopyresampled(
             $new_image,
             $cur_image,
@@ -101,8 +106,16 @@ class Image {
             $height,
             $fileinfo['width'] - $x_offset * 2,
             $fileinfo['height'] - $y_offset * 2);
+
+        imagecopy($new_image, $logo, $width - 150, $height - 20, 0, 0, 150, 20);
         $func = 'image' . explode('/', $fileinfo['mime'])[1];
         $func($new_image, dirname($filename) . '/' . $fl[0] . '_' . $width . 'x' . $height . '.' . $fl[1]);
+
+
+        imagedestroy($logo);
+        imagedestroy($new_image);
+        imagedestroy($cur_image);
+
         return dirname($filename) . '/' . $fl[0] . '_' . $width . 'x' . $height . '.' . $fl[1];
     }
 }
