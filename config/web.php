@@ -1,5 +1,7 @@
 <?php
 
+Yii::setAlias('@modules', dirname(__DIR__) . '/modules');
+
 $params = require(__DIR__ . '/params.php');
 
 $config = [
@@ -47,10 +49,21 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                '/catalog' => 'site/catalog',
+                /*'<action:\w+>' => 'site/<action>',
+
+                '<module:admin>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',
+                '<module:admin>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
+                '<module:admin>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',*/
+
+                //'/catalog' => 'site/catalog',
+                '/paneli.html' => 'site/catalog',
+
                 '/dostavka' => 'site/dostavka',
-                //'<action>' => 'site/<action>',
-                '/catalog/eda' => 'site/thema?id=1',
+
+
+
+
+
                 'admin/login' => 'admin/default/login',
                 'admin/logout' => 'admin/default/logout',
             ],

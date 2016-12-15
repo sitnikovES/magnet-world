@@ -11,7 +11,9 @@
 $this->title = 'Каталог магнитных панелей';
 ?>
 <div class="site-index">
-    <h1>Магнитные панели на холодильник!</h1>
+    <div class="row" style="text-align: center;">
+        <h1>Магнитные панели на холодильник <br> <?= $theme['name'] ?></h1>
+    </div>
     <div class="body-content">
         <div class="row">
         <?php foreach($products as $product){ ?>

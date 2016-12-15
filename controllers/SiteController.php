@@ -156,6 +156,7 @@ class SiteController extends Controller
             $products = Product::find()
                 ->where(['active' => 1, 'product_thema_id' => $theme['id']])
                 ->asArray()
+                ->orderBy('name')
                 ->all();
 
             return $this->render('themaproductlist',[

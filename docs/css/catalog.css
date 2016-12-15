@@ -1,0 +1,24 @@
+.body-content a:hover {
+    font-weight: bold;
+}
+
+.body-content button {
+    color: white;
+    border: 0;
+    height: 45px;
+    width: 350px;
+    background-color: rgba(0,0,0,0.5);
+    text-transform: uppercase;
+}
+
+.th_item {
+    text-align: center;
+}
+
+.th_item div {
+    margin-top: -45px;
+}
+
+h1 {
+    text-align: center;
+}
