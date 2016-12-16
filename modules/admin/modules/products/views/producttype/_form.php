@@ -2,10 +2,16 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\modules\admin\assets\TinymceAsset;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Producttype */
 /* @var $form yii\widgets\ActiveForm */
+
+$this->registerAssetBundle(TinymceAsset::className());
+
+$this->registerJsFile('js/admin/producttype.js',['depends' => TinymceAsset::className()]);
+
 ?>
 
 <div class="producttype-form">

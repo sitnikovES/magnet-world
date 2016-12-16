@@ -49,14 +49,17 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                /*'<action:\w+>' => 'site/<action>',
-
-                '<module:admin>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',
+                /*'<module:admin>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',
                 '<module:admin>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
-                '<module:admin>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',*/
+                '<module:admin>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+
+                '<action:\w+>' => 'site/<action>',
+/*
+                */
 
                 //'/catalog' => 'site/catalog',
                 '/paneli.html' => 'site/catalog',
+                '/product' => 'site/product',
 
                 '/dostavka' => 'site/dostavka',
 

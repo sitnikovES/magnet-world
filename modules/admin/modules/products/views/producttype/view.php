@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'caption',
             'keywords',
             'description',
-            'text:ntext',
+            'text:html',
             'name_translit',
             'price_formula',
             'weight',

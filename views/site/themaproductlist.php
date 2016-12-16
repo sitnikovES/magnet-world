@@ -8,6 +8,8 @@
 
 /* @var $this yii\web\View */
 
+use yii\helpers\Url;
+
 $this->title = 'Каталог магнитных панелей';
 ?>
 <div class="site-index">
@@ -18,11 +20,11 @@ $this->title = 'Каталог магнитных панелей';
         <div class="row">
         <?php foreach($products as $product){ ?>
             <div class="col-lg-4 col-md-6" style="text-align: center;">
-                        <a href="/?id=<?= $product['id'] ?>">
+                        <a href="<?= Url::to(['/product', 'id' => $product['id']]) ?>">
                             <img src="/img/product/<?= $product['id'] . '/id_' . $product['id'] ?>_350x350.jpg" style="height:350px; width:350px;" />
                         </a>
                         <div style="margin-top: -34px;">
-                            <a href="/?id=<?= $product['id'] ?>"><button style="color: #FFF; border:0; height: 34px; width: 350px; background-color: rgba(0,0,0,0.5);"><?= strtoupper($type['name'] . ' - ' . $product['name']) ?></button></a>
+                            <a href="/magnitnaya-panel-na-holodilnik-<?= $product['name_translit'] ?>.html"><button style="color: #FFF; border:0; height: 34px; width: 350px; background-color: rgba(0,0,0,0.5);"><?= strtoupper($type['name'] . ' - ' . $product['name']) ?></button></a>
                         </div><p></p>
             </div>
         <?php } ?>

@@ -184,6 +184,27 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    /**
+     * Displays about page.
+     *
+     * @return string
+     */
+    public function actionProduct($id)
+    {
+        return $this->render('Product', [
+            'product' => $this->findProduct($id),
+        ]);
+    }
+
+
+    public function findProduct($id){
+        if (($product = Product::find()->where(['id' => $id])->with('producttype')->with('images')->asArray()->one()) !== null) {
+            return $product;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
     public function actionDostavka()
     {
         $fixed = array();

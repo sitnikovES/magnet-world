@@ -5,12 +5,16 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Producttype;
 use app\models\Productthema;
+use app\modules\admin\assets\TinymceAsset;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Product */
 /* @var $form yii\widgets\ActiveForm */
 
 $this->registerAssetBundle(\app\modules\admin\assets\DropzoneAsset::className());
+$this->registerAssetBundle(TinymceAsset::className());
+
+$this->registerJsFile('js/admin/product.js',['depends' => TinymceAsset::className()]);
 ?>
 
 <div class="container">
