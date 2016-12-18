@@ -15,12 +15,15 @@ use app\models\Producttype;
  * @property integer $pos
  * @property integer $have_set
  * @property string $hint
+ * @property string $def_value
  */
 class Productparam extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
+    public static $valueType = ['Число', 'Набор значений', 'Строка', 'Текст'];
+    
     public static function tableName()
     {
         return '{{%product_param}}';
@@ -34,7 +37,7 @@ class Productparam extends \yii\db\ActiveRecord
         return [
             [['product_type_id', 'active', 'name'], 'required'],
             [['product_type_id', 'active', 'pos' ,'have_set'], 'integer'],
-            [['name', 'hint'], 'string', 'max' => 255],
+            [['name', 'hint', 'def_value'], 'string', 'max' => 255],
             [['pos', 'have_set'], 'default', 'value' => 0],
         ];
     }
@@ -50,8 +53,9 @@ class Productparam extends \yii\db\ActiveRecord
             'name' => 'Наименование',
             'active' => 'Отображать',
             'pos' => 'Очередность',
-            'have_set' => 'Использовать набор',
+            'have_set' => 'Тип значения',
             'hint' => 'Подсказка',
+            'def_value' => 'Значение по умолчанию',
         ];
     }
 

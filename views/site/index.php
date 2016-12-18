@@ -2,6 +2,9 @@
 
 /* @var $this yii\web\View */
 
+
+use yii\helpers\Url;
+
 $this->title = 'Магнитный мир';
 ?>
 <div class="site-index">
@@ -14,11 +17,11 @@ $this->title = 'Магнитный мир';
             <?php
             foreach($new_product as $product){ ?>
             <div class="col-lg-4 col-md-6" style="text-align: center;">
-                <a href="#">
+                <a href="<?= Url::to(['/product', 'id' => $product['id']]) ?>">
                     <img src="/img/product/<?= $product['id'] ?>/id_<?= $product['id'] ?>_350x350.jpg" style="height:350px; width:350px;" />
                 </a>
                 <div style="margin-top: -34px;">
-                    <a href="/"><button style="color: #FFF; border:0; height: 34px; width: 350px; background-color: rgba(0,0,0,0.5);"><?= $product['producttype']['name'] . ' - ' . $product['name'] ?></button></a>
+                    <a href="<?= Url::to(['product', 'id' => $product['id']]) ?>"><button style="color: #FFF; border:0; height: 34px; width: 350px; background-color: rgba(0,0,0,0.5);"><?= $product['producttype']['name'] . ' - ' . $product['name'] ?></button></a>
                 </div><p></p>
             </div>
             <?php } ?>
@@ -30,11 +33,11 @@ $this->title = 'Магнитный мир';
             <?php
             foreach($pop_product as $product){ ?>
                 <div class="col-lg-4 col-md-6" style="text-align: center;">
-                    <a href="#">
+                    <a href="<?= Url::to(['/product', 'id' => $product['id']]) ?>">
                         <img src="/img/product/<?= $product['id'] ?>/id_<?= $product['id'] ?>_350x350.jpg" style="height:350px; width:350px;" />
                     </a>
                     <div style="margin-top: -34px;">
-                        <a href="/"><button style="color: #FFF; border:0; height: 34px; width: 350px; background-color: rgba(0,0,0,0.5);"><?= $product['producttype']['name'] . ' - ' . $product['name'] ?></button></a>
+                        <a href="<?= Url::to(['/product', 'id' => $product['id']]) ?>"><button style="color: #FFF; border:0; height: 34px; width: 350px; background-color: rgba(0,0,0,0.5);"><?= $product['producttype']['name'] . ' - ' . $product['name'] ?></button></a>
                     </div><p></p>
                 </div>
             <?php } ?>

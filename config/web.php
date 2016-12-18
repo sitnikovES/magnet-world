@@ -60,6 +60,7 @@ $config = [
                 //'/catalog' => 'site/catalog',
                 '/paneli.html' => 'site/catalog',
                 '/product' => 'site/product',
+                '/basket' => 'site/basket',
 
                 '/dostavka' => 'site/dostavka',
 

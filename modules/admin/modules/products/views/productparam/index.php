@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use app\models\Producttype;
+use app\models\Productparam;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductparamSearch */
@@ -48,11 +49,14 @@ $this->params['breadcrumbs'][] = $this->title;
             //'have_set:boolean',
             [
                 'attribute' => 'have_set',
-                'format' => 'boolean',
-                'filter' => ['Нет', 'Да'],
+                'filter' => Productparam::$valueType,
+                'content' => function($data){
+                    return Productparam::$valueType[$data['have_set']];
+                }
 
             ],
             'hint',
+            'def_value',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

@@ -34,9 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['attribute' => 'Тип товара', 'value' => $model->producttype->name, ],
             'name',
             'active:boolean',
-            'have_set:boolean',
+            [
+                'attribute' => 'have_set',
+                'value' => $model::$valueType[$model->have_set],
+            ],
             'pos',
             'hint',
+            'def_value',
         ],
     ]) ?>
 

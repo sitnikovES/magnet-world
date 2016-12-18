@@ -20,13 +20,13 @@ use app\models\Producttype;
 
     <?= $form->field($model, 'active')->dropDownList(['Нет', 'Да']) ?>
 
-    <?= $form->field($model, 'have_set')->dropDownList(['Нет', 'Да']) ?>
+    <?= $form->field($model, 'have_set')->dropDownList($model::$valueType) ?>
 
     <?= $form->field($model, 'hint')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'pos')->textInput(['maxlength' => true]) ?>
 
-
+    <?= $form->field($model, 'def_value')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Сохранить' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

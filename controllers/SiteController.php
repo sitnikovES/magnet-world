@@ -3,8 +3,10 @@
 namespace app\controllers;
 
 use app\models\Product;
+use app\models\Productparam;
 use app\models\Productthema;
 use Yii;
+use yii\base\DynamicModel;
 use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -191,9 +193,97 @@ class SiteController extends Controller
      */
     public function actionProduct($id)
     {
+        $product_type_id = Product::find()->where(['id' => $id])->asArray()->one()['product_type_id'];
+        $param_list = Productparam::find()->where(['product_type_id' => $product_type_id,'active' => 1])->orderBy('pos')->asArray()->all();
+
+        $fieldset = ['product_id', 'price'];
+        foreach ($param_list as $value){
+            array_push($fieldset, 'id' . $value['id']);
+        }
+
+        $model = new DynamicModel($fieldset);
+        $model->addRule('product_id', 'integer')->validate();
+        $model->addRule('price', 'integer')->validate();
+        foreach ($param_list as $value){
+            switch ($value['have_set']){
+                case 0:
+                case 1:
+                $model
+                    //->addRule('id' . $value['id'], 'required', ['message' => Yii::t('app', 'Поле обязательно для заполнения.')])
+                    ->addRule('id' . $value['id'], 'integer', ['message' => Yii::t('app', 'Значение должно быть числом.')])->validate();
+                    break;
+                case 2: $model->addRule('id' . $value['id'], 'string', ['max' => 255])->validate();
+                    break;
+                case 3: $model->addRule('id' . $value['id'], 'string')->validate();
+                    break;
+            }
+        }
+
+
         return $this->render('Product', [
             'product' => $this->findProduct($id),
+            'model' => $model,
+            'param_list' => $param_list,
         ]);
+    }
+
+    public function actionProductadd(){
+        $product = array();
+
+        if(!isset($_POST['DynamicModel']['product_id'])){
+            return "not exist" . print_r($_POST);
+        }
+        $product_id = $_POST['DynamicModel']['product_id'];
+
+        if(!is_numeric($product_id)){
+            return "not numeric";
+        }
+
+        //$product['product_id'] = $product_id;
+
+        $product_type_id = Product::find()->where(['id' => $product_id])->asArray()->one()['product_type_id'];
+        $param_list = Productparam::find()->where(['product_type_id' => $product_type_id,'active' => 1])->orderBy('pos')->asArray()->all();
+
+        $fieldset = ['product_id', 'price'];
+        foreach ($param_list as $value){
+            array_push($fieldset, 'id' . $value['id']);
+        }
+
+        $model = new DynamicModel($fieldset);
+        $model->addRule('product_id', 'integer')->validate();
+        $model->addRule('price', 'integer')->validate();
+        foreach ($param_list as $value){
+            switch ($value['have_set']){
+                case 0:
+                case 1: $model->addRule('id' . $value['id'], 'integer')->validate();
+                    break;
+                case 2: $model->addRule('id' . $value['id'], 'string', ['max' => 255])->validate();
+                    break;
+                case 3: $model->addRule('id' . $value['id'], 'string')->validate();
+                    break;
+            }
+        }
+
+        if($model->load(Yii::$app->request->post()) and $model->validate()){
+
+            $product['product_id'] = $model->product_id;
+            $product['price'] = $model->price;
+
+            foreach ($param_list as $value){
+                $product[$value['id']] = $_POST['DynamicModel']['id' . $value['id']];
+            }
+            $session = Yii::$app->session;
+            if(!$session->isActive){
+                $session->open();
+                //$session['products'] = [];
+            }
+            $products = $session['products'];
+            array_push($products, $product);
+            $session['products'] = $products;
+
+            return $this->redirect(['basket']);
+        }
+        return $this->redirect(['/admin']);
     }
 
 
@@ -203,6 +293,32 @@ class SiteController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionBasket(){
+        $session = Yii::$app->session;
+        if(!$session->isActive){
+            $session->open();
+        }
+        
+        $products = isset($session['products']) ? $session['products'] : null;
+        $info = [];
+        if(is_array($products)){
+            $tmp = [];
+            $id = [];
+            foreach ($products as $product){
+                array_push($id, $product['product_id']);
+            }
+            $tmp = Product::find()->where(['id' => $id])->asArray()->all();
+            foreach ($tmp as $t){
+                $info[$t['id']] = $t;
+            }
+        }
+        
+        return $this->render('basket', [
+            'products' => $products,
+            'info' => $info,
+        ]);
     }
 
     public function actionDostavka()

@@ -33,8 +33,9 @@ AppAsset::register($this);
         <div class="col-sm-4"><span style="font-size: 250%; color: #5bc0de;">Магнитный мир</span></div>
         <div class="col-sm-4">
             <div class="col-md-4">
-                <?=  Html::a('<i class="fa fa-comments-o" style="font-size: 300%"></i>&nbsp;Вопрос-ответ</div>',
+                <?=  Html::a('<i class="fa fa-comments-o" style="font-size: 300%"></i>&nbsp;Вопрос-ответ',
                     Url::to(['site/dostavka'])) ?>
+            </div>
             <div class="col-md-4">
                 <?= Html::a('<i class="fa fa-truck fa-flip-horizontal" style="font-size: 300%"></i>&nbsp;Доставка',
                     Url::to(['site/dostavka'])) ?>
@@ -68,6 +69,7 @@ AppAsset::register($this);
                 ['label' => 'Контакты', 'url' => ['/site/contact']],
             ],
         ]);
+        
         NavBar::end();
         ?>
     </div>
