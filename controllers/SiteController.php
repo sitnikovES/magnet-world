@@ -222,7 +222,7 @@ class SiteController extends Controller
         }
 
 
-        return $this->render('Product', [
+        return $this->render('product', [
             'product' => $this->findProduct($id),
             'model' => $model,
             'param_list' => $param_list,
