@@ -15,6 +15,8 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Postcompany;
 use app\models\Producttype;
+use yii\web\NotFoundHttpException;
+use yii\base\InvalidParamException;
 
 class SiteController extends Controller
 {

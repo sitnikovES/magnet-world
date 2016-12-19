@@ -19,4 +19,3 @@ else {
         'tablePrefix' => 'mw_'
     ];
 }
-
