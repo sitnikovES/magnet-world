@@ -45,6 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             ->textInput(['value' => $param['def_value'], 'title' => $param['hint'], 'data-toggle' => 'tooltip'])
                             ->label(Yii::t('app', $param['name']) ) : null ?>
                     <?php } ?>
+
+                    <?= $form->field($model, 'cn')->textInput(['value' => 1])->label('Количество') ?>
+
                     <div class="form-group">
                         <?= Html::submitButton('Добавить в корзину', ['class' => 'btn btn-success']) ?>
                     </div>

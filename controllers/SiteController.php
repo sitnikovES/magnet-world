@@ -198,13 +198,14 @@ class SiteController extends Controller
         $product_type_id = Product::find()->where(['id' => $id])->asArray()->one()['product_type_id'];
         $param_list = Productparam::find()->where(['product_type_id' => $product_type_id,'active' => 1])->orderBy('pos')->asArray()->all();
 
-        $fieldset = ['product_id', 'price'];
+        $fieldset = ['product_id', 'price', 'cn'];
         foreach ($param_list as $value){
             array_push($fieldset, 'id' . $value['id']);
         }
 
         $model = new DynamicModel($fieldset);
         $model->addRule('product_id', 'integer')->validate();
+        $model->addRule('cn', 'integer')->validate();
         $model->addRule('price', 'integer')->validate();
         foreach ($param_list as $value){
             switch ($value['have_set']){
@@ -229,6 +230,12 @@ class SiteController extends Controller
         ]);
     }
 
+
+
+    /**
+     * adding product to the basket.
+     *
+     */
     public function actionProductadd(){
         $product = array();
 
@@ -241,18 +248,18 @@ class SiteController extends Controller
             return "not numeric";
         }
 
-        //$product['product_id'] = $product_id;
 
         $product_type_id = Product::find()->where(['id' => $product_id])->asArray()->one()['product_type_id'];
-        $param_list = Productparam::find()->where(['product_type_id' => $product_type_id,'active' => 1])->orderBy('pos')->asArray()->all();
+        $param_list = Productparam::find()->where(['active' => 1, 'product_type_id' => $product_type_id])->orderBy('pos')->asArray()->all();
 
-        $fieldset = ['product_id', 'price'];
+        $fieldset = ['product_id', 'price', 'cn'];
         foreach ($param_list as $value){
             array_push($fieldset, 'id' . $value['id']);
         }
 
         $model = new DynamicModel($fieldset);
         $model->addRule('product_id', 'integer')->validate();
+        $model->addRule('cn', 'integer')->validate();
         $model->addRule('price', 'integer')->validate();
         foreach ($param_list as $value){
             switch ($value['have_set']){
@@ -266,10 +273,15 @@ class SiteController extends Controller
             }
         }
 
+
+
         if($model->load(Yii::$app->request->post()) and $model->validate()){
+            $products = array();
+
 
             $product['product_id'] = $model->product_id;
             $product['price'] = $model->price;
+            $product['cn'] = $model->cn;
 
             foreach ($param_list as $value){
                 $product[$value['id']] = $_POST['DynamicModel']['id' . $value['id']];
@@ -277,9 +289,13 @@ class SiteController extends Controller
             $session = Yii::$app->session;
             if(!$session->isActive){
                 $session->open();
-                //$session['products'] = [];
+
             }
-            $products = $session['products'];
+
+            if(isset($session['products'])){
+                $products = $session['products'];
+            }
+
             array_push($products, $product);
             $session['products'] = $products;
 
