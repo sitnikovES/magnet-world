@@ -7,7 +7,7 @@ use app\models\Productparam;
 use app\models\Productthema;
 use Yii;
 use yii\base\DynamicModel;
-use yii\db\Query;
+//use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -16,7 +16,7 @@ use app\models\ContactForm;
 use app\models\Postcompany;
 use app\models\Producttype;
 use yii\web\NotFoundHttpException;
-use yii\base\InvalidParamException;
+//use yii\base\InvalidParamException;
 
 class SiteController extends Controller
 {
@@ -299,7 +299,7 @@ class SiteController extends Controller
             array_push($products, $product);
             $session['products'] = $products;
 
-            return $this->redirect(['basket']);
+            return $this->redirect(['/basket']);
         }
         return $this->redirect(['/admin']);
     }
@@ -311,32 +311,6 @@ class SiteController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-
-    public function actionBasket(){
-        $session = Yii::$app->session;
-        if(!$session->isActive){
-            $session->open();
-        }
-        
-        $products = isset($session['products']) ? $session['products'] : null;
-        $info = [];
-        if(is_array($products)){
-            $tmp = [];
-            $id = [];
-            foreach ($products as $product){
-                array_push($id, $product['product_id']);
-            }
-            $tmp = Product::find()->where(['id' => $id])->asArray()->all();
-            foreach ($tmp as $t){
-                $info[$t['id']] = $t;
-            }
-        }
-        
-        return $this->render('basket', [
-            'products' => $products,
-            'info' => $info,
-        ]);
     }
 
     public function actionDostavka()

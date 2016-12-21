@@ -6,10 +6,15 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
+//use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-use app\srv\Servdata;
+//use app\srv\Servdata;
 use yii\helpers\Url;
+
+$session = Yii::$app->session;
+if(!$session->isActive){
+    $session->open();
+}
 
 AppAsset::register($this);
 ?>
@@ -42,8 +47,8 @@ AppAsset::register($this);
 
             </div>
             <div class="col-md-4">
-               <?=  Html::a('<i class="fa fa-shopping-cart" style="font-size: 300%"></i>&nbsp;Корзина(0)',
-                   Url::to(['site/basket'])) ?>
+               <?=  Html::a('<i class="fa fa-shopping-cart" style="font-size: 300%"></i>&nbsp;Корзина()',
+                   Url::to(['/basket'])) ?>
             </div>
         </div>
     </div>

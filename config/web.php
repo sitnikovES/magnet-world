@@ -60,12 +60,14 @@ $config = [
                 //'/catalog' => 'site/catalog',
                 '/paneli.html' => 'site/catalog',
                 '/product' => 'site/product',
-                '/basket' => 'site/basket',
 
                 '/dostavka' => 'site/dostavka',
 
 
 
+
+                'basket/order' => 'basket/default/order',
+                'basket/thanks' => 'basket/default/thanks',
 
 
                 'admin/login' => 'admin/default/login',
@@ -76,6 +78,9 @@ $config = [
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\admin',
+        ],
+        'basket' => [
+            'class' => 'app\modules\basket\module',
         ],
     ],
     'params' => $params,
