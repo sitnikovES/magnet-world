@@ -63,7 +63,7 @@ class Orders extends \yii\db\ActiveRecord
             'updated_at' => 'Дата редактирования',
             'name' => 'Имя',
             'phone' => 'Телефон',
-            'address' => 'Адрес',
+            'address' => 'Адрес (область, город, улица, дом)',
             'email' => 'E-mail',
             'postindex' => 'Почтовый индекс',
             'order_status_id' => 'Статус заказа',

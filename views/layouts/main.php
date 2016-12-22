@@ -15,6 +15,7 @@ $session = Yii::$app->session;
 if(!$session->isActive){
     $session->open();
 }
+//$session->remove('products');
 
 AppAsset::register($this);
 ?>
@@ -47,7 +48,7 @@ AppAsset::register($this);
 
             </div>
             <div class="col-md-4">
-               <?=  Html::a('<i class="fa fa-shopping-cart" style="font-size: 300%"></i>&nbsp;Корзина()',
+               <?=  Html::a('<i class="fa fa-shopping-cart" style="font-size: 300%"></i>&nbsp;Корзина(' . ((isset($_SESSION) and (isset($_SESSION['products'])))? count($_SESSION['products']) : 0) . ')',
                    Url::to(['/basket'])) ?>
             </div>
         </div>
