@@ -147,4 +147,23 @@ class OrdersController extends BehaviorsController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+    /**
+     * Creates a new Cashflow model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCashflowcreate()
+    {
+        $model = new Cashflow();
+        $model->order_id = Yii::$app->request->get('order_id');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->order_id]);
+        } else {
+            return $this->render('cashflow/create', [
+                'model' => $model,
+            ]);
+        }
+    }
 }

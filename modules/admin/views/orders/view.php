@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </div>
     <div class="row">
-        <?= $this->render('index_cashflow', [
+        <?= $this->render('cashflow/index', [
             'model' => $model,
             'dataProvider' => $billing['dataProvider'],
         ]) ?>

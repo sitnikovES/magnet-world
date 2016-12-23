@@ -13,7 +13,7 @@ use app\models\Orders;
 
     <h1>Биллинг</h1>
     <p>
-        <?= Html::a('Добавить запись', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить запись', ['cashflowcreate', 'order_id' => $model->id], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

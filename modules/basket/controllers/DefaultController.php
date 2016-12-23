@@ -2,6 +2,7 @@
 
 namespace app\modules\basket\controllers;
 
+use app\models\OrderContent;
 use Yii;
 use app\models\Orders;
 use yii\web\Controller;
@@ -69,10 +70,52 @@ class DefaultController extends Controller
     }
 
     public function actionOrder(){
+
         $model = new Orders();
-        return $this->render('order', [
-            'model' => $model,
-        ]);
+        $session = Yii::$app->session;
+        $message['name'] = 'no messages';
+        $message['param'] = '';
+        if(!$session->isActive){
+            $session->open();
+        }
+        $products = isset($session['products']) ? $session['products'] : null;
+
+        $model = new Orders();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $session = Yii::$app->session;
+            if(!$session->isActive){
+                $session->open();
+            }
+            if(isset($products)){
+                foreach ($products as $product){
+                    $mdl = new OrderContent();
+                    $mdl->order_id = $model->id;
+                    $mdl->product_id = $product['product_id'];
+                    $mdl->price = $product['price'];
+                    $mdl->cnt = $product['cn'];
+                    if(!$mdl->validate()){
+                        $message['name'] = "Ошибка валидации";
+                        $message['param'] = $product;
+                    }
+                    else {
+                        array_push($message, $product);
+                    };
+                    $mdl->save();
+                    foreach($product as $key => $value){
+                        if(is_numeric($key)){
+                            $mdl->addParam($key, $value);
+                        }
+                    }
+                }
+                $session->destroy();
+            }
+            return $this->redirect(['thanks']);
+        } else {
+            return $this->render('order', [
+                'model' => $model,
+            ]);
+        }
     }
 
     public function actionThanks(){

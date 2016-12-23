@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-contact">
     <div class="container">
         <h1><?= Html::encode($this->title) ?></h1>
-        <?php if(isset($products)){ foreach ($products as $product){{ ?>
+        <?php if(isset($products)){ foreach ($products as $product){ ?>
             <div class="row">
                 <div class="col-sm-3">
                     <?= $info[$product['product_id']]['producttype']['name'] . ' - ' . $info[$product['product_id']]['name'] ?>
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </table>
                 </div>
             </div>
-        <?php }}?>
+        <?php }?>
             <br>
             <div class="row" style="text-align: right;">
                 <a href="<?= Url::to(['/basket/order']) ?>"><button class="btn btn-success">Оформить заказ</button></a>

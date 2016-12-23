@@ -42,7 +42,7 @@ class Orders extends \yii\db\ActiveRecord
     {
         return [
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'phone', 'address', 'email', 'post_type_id', 'postindex'], 'required'],
+            [['name', 'phone', 'address', 'email', 'post_type_id', 'postindex', 'pay_type_id'], 'required'],
             [['postindex', 'order_status_id', 'pay_type_id', 'post_type_id'], 'integer'],
             [['name', 'phone', 'address', 'email', 'post_code'], 'string', 'max' => 255],
             [['note'], 'string'],
