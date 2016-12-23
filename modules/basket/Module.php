@@ -15,10 +15,11 @@ class Module extends \yii\base\Module
     /**
      * @inheritdoc
      */
+
     public function init()
     {
+        //test
         parent::init();
-
         // custom initialization code goes here
     }
 }

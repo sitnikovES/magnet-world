@@ -20,12 +20,48 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1 class="center"><?= Html::encode($this->title) ?></h1>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 center">
+            <div class="col-md-6">
                 <div class="col-sm-12">
                     <img src="/img/product/<?= $product['id'] ?>/id_<?= $product['id'] ?>_500x500.jpg" />
                 </div>
+                <br>&nbsp;
                 <div class="col-sm-12">
-                    //Слайдер
+                    <div id="carousel" class="carousel slide" style="width: 500px;">
+                        <ol class="carousel-indicators">
+                            <li class="active" data-target="#carousel" data-slide-to="0"></li>
+                            <li data-target="#carousel" data-slide-to="1"></li>
+                            <li data-target="#carousel" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="/img/product/1/id_1_500x500.jpg" />
+                                <div class="carousel-caption">
+                                    <h3><?= $product['name'] ?></h3>
+                                    <p>Какой-то текст</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="/img/product/2/id_2_500x500.jpg" />
+                                <div class="carousel-caption">
+                                    <h3><?= $product['name'] ?></h3>
+                                    <p>Какой-то текст</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="/img/product/3/id_3_500x500.jpg" />
+                                <div class="carousel-caption">
+                                    <h3><?= $product['name'] ?></h3>
+                                    <p>Какой-то текст</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#carousel" class="left carousel-control" data-slide="prev" style="background-image: none;">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a href="#carousel" class="right carousel-control" data-slide="next" style="background-image: none;">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -53,12 +89,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <?php ActiveForm::end() ?>
                 </div>
-                    <?php
-                    //echo '<pre>';
-                    //print_r($model);
-                    //print_r($param_list);
-                    //echo '</pre>';
-                    ?>
                 <div class="col-sm-12">
                     <?= $product['producttype']['text'] ?>
                 </div>

@@ -109,9 +109,7 @@ class Image {
 
         imagecopy($new_image, $logo, $width - 150, $height - 20, 0, 0, 150, 20);
         $func = 'image' . explode('/', $fileinfo['mime'])[1];
-        $func($new_image, dirname($filename) . '/' . $fl[0] . '_' . $width . 'x' . $height . '.' . $fl[1]);
-
-
+        $func($new_image, dirname($filename) . '/' . $fl[0] . '_' . $width . 'x' . $height . '.' . $fl[1], 100);
         imagedestroy($logo);
         imagedestroy($new_image);
         imagedestroy($cur_image);
