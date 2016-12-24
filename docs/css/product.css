@@ -5,3 +5,13 @@
 .prod_hint {
     font-size: 10px;
 }
+
+#span_price {
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#span_price span {
+    color: red;
+}

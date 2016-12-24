@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\models\Product;
 use app\models\Productparam;
 use app\models\Productthema;
+use app\models\ProductPhoto;
+use app\models\Shopsettings;
 use Yii;
 use yii\base\DynamicModel;
 //use yii\db\Query;
@@ -197,7 +199,16 @@ class SiteController extends Controller
     {
         $product_type_id = Product::find()->where(['id' => $id])->asArray()->one()['product_type_id'];
         $param_list = Productparam::find()->where(['product_type_id' => $product_type_id,'active' => 1])->orderBy('pos')->asArray()->all();
+        $image_list = ProductPhoto::find()->where(['product_id' => $id])->asArray()->all();
 
+        //Переменные по стоимости
+        $var_list = [];
+        $tmp = Shopsettings::find()->where(['type_id' => $product_type_id])->asArray()->orderBy('id')->all();
+        foreach ($tmp as $value){
+            $var_list[$value['id']] = $value;
+        }
+        
+        
         $fieldset = ['product_id', 'price', 'cn'];
         foreach ($param_list as $value){
             array_push($fieldset, 'id' . $value['id']);
@@ -227,6 +238,8 @@ class SiteController extends Controller
             'product' => $this->findProduct($id),
             'model' => $model,
             'param_list' => $param_list,
+            'image_list' => $image_list,
+            'var_list' => $var_list,
         ]);
     }
 

@@ -16,7 +16,18 @@ $this->registerAssetBundle(ProductAsset::className());
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<script>
+    var mp = <?= $var_list[1]['value'] ?>;
+    var pp = <?= $var_list[2]['value'] ?>;
+</script>
 <div class="site-about">
+<?php
+   /*$i = 30;
+   $text = '$i + 2 * 2';
+    eval('$math= '. $text. ';');
+    echo $math;*/
+?>
+
     <h1 class="center"><?= Html::encode($this->title) ?></h1>
     <div class="container">
         <div class="row">
@@ -25,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <img src="/img/product/<?= $product['id'] ?>/id_<?= $product['id'] ?>_500x500.jpg" />
                 </div>
                 <br>&nbsp;
+                <?php if(count($image_list)){ ?>
                 <div class="col-sm-12">
                     <div id="carousel" class="carousel slide" style="width: 500px;">
                         <ol class="carousel-indicators">
@@ -63,6 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </a>
                     </div>
                 </div>
+                <?php } ?>
             </div>
             <div class="col-md-6">
                 <div class="col-sm-12">
@@ -74,7 +87,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
 
                     <?= $form->field($model, 'product_id')->hiddenInput(['value' => $product['id']])->label(false) ?>
-                    <?= $form->field($model, 'price')->hiddenInput(['value' => 0])->label(false) ?>
 
                     <?php foreach ($param_list as $param) { ?>
                     <?= ($param['have_set'] == 0) ? $form->field($model, 'id' . $param['id'])
@@ -84,6 +96,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'cn')->textInput(['value' => 1])->label('Количество') ?>
 
+                    <?= $form->field($model, 'price')->hiddenInput(['value' => 0])->label(false) ?>
+                    
+                    <div class="container" id="span_price">
+                        Цена: <span></span>
+                    </div>
                     <div class="form-group">
                         <?= Html::submitButton('Добавить в корзину', ['class' => 'btn btn-success']) ?>
                     </div>
