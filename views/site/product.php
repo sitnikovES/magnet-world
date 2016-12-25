@@ -19,6 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     var mp = <?= $var_list[1]['value'] ?>;
     var pp = <?= $var_list[2]['value'] ?>;
+    var packp = <?= $var_list[3]['value'] ?>;
+    var montag = <?= $var_list[4]['value'] ?>;
+    var postp = <?= $var_list[5]['value'] ?>;
 </script>
 <div class="site-about">
 <?php

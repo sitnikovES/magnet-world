@@ -9,7 +9,6 @@ use app\models\ProductPhoto;
 use app\models\Shopsettings;
 use Yii;
 use yii\base\DynamicModel;
-//use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
