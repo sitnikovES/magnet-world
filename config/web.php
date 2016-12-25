@@ -68,6 +68,7 @@ $config = [
 
                 'basket/order' => 'basket/default/order',
                 'basket/thanks' => 'basket/default/thanks',
+                'basket/del' => 'basket/default/del',
 
 
                 'admin/login' => 'admin/default/login',

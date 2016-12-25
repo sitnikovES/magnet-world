@@ -69,6 +69,22 @@ class DefaultController extends Controller
         return $this->render('index');
     }
 
+    public function actionDel($id){
+        $session = Yii::$app->session;
+        $message['name'] = 'no messages';
+        $message['param'] = '';
+        if(!$session->isActive){
+            $session->open();
+        }
+
+        if(isset($session['products']) and isset($session['products'][$id])){
+            $products = $session['products'];
+            unset($products[$id]);
+            $session['products'] = $products;
+        }
+        return $this->redirect(['/basket']);
+    }
+
     public function actionOrder(){
 
         $model = new Orders();
