@@ -1,21 +1,33 @@
 div {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
 
 .prod_line {
     position: relative;
-    text-align: center;
+}
+
+.prod_line td{
+    font-weight: bold;
+    padding: 3px;
+}
+
+.prod_line td:first-child{
+    padding-right: 20px;
 }
 
 .prod_del {
-    font-size: 130%; color: orange;
+    font-size: 130%;
     position: absolute;
     right: 10px;
-    top: 10px;
+    top: 0px;
     padding: 1px;
     cursor: pointer;
 }
 
-.prod_del:hover {
+.fa-close {
+    color: orange;
+}
+
+.fa-close:hover {
     color: red;
 }

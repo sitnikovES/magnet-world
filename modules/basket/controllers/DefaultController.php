@@ -126,6 +126,18 @@ class DefaultController extends Controller
                 }
                 $session->destroy();
             }
+
+            Yii::$app->mailer->compose()
+                ->setTo(['mama7361@mail.ru', 'shop@magnet-world.ru', $model->email])
+                ->setFrom('shop@magnet-world.ru') //magnetmaster
+                ->setSubject('Новый заказ(' . $this->name . ')')
+                ->setTextBody(
+                    $this->name
+                    . '
+                '
+                    . $this->mes)
+                ->send();
+
             return $this->redirect(['thanks']);
         } else {
             return $this->render('order', [

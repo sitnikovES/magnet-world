@@ -215,15 +215,15 @@ class SiteController extends Controller
 
         $model = new DynamicModel($fieldset);
         $model->addRule('product_id', 'integer')->validate();
-        $model->addRule('cn', 'integer')->validate();
-        $model->addRule('price', 'integer')->validate();
+        $model->addRule('cn', 'integer', ['message' => Yii::t('app', 'Значение должно быть целым числом.')])->validate();
+        $model->addRule('price', 'integer', ['message' => ''])->validate();
         foreach ($param_list as $value){
             switch ($value['have_set']){
                 case 0:
                 case 1:
                 $model
                     //->addRule('id' . $value['id'], 'required', ['message' => Yii::t('app', 'Поле обязательно для заполнения.')])
-                    ->addRule('id' . $value['id'], 'integer', ['message' => Yii::t('app', 'Значение должно быть числом.')])->validate();
+                    ->addRule('id' . $value['id'], 'integer', ['message' => Yii::t('app', 'Значение должно быть целым числом.')])->validate();
                     break;
                 case 2: $model->addRule('id' . $value['id'], 'string', ['max' => 255])->validate();
                     break;
