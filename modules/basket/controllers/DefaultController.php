@@ -48,11 +48,11 @@ class DefaultController extends Controller
                 array_push($product_type, $t['product_type_id']);
             }
 
-            //получаем названия параметров
+            /*//получаем названия параметров
             $tmp = Productparam::find()->where(['id' => $param_list])->asArray()->all();
             foreach ($tmp as $t){
                 $param_list[$t['id']] = $t;
-            }
+            }*/
 
             //получаем названия параметров
             $tmp = Productparam::find()->where(['id' => $param_list])->asArray()->all();
@@ -131,10 +131,8 @@ class DefaultController extends Controller
                 ->setTo(['mama7361@mail.ru', 'shop@magnet-world.ru', $model->email])
                 ->setFrom('shop@magnet-world.ru') //magnetmaster
                 ->setSubject('Новый заказ(' . $this->name . ')')
-                ->setTextBody(
-                    $this->name
-                    . '
-                '
+                ->setHtmlBody($this->name
+                    . ''
                     . $this->mes)
                 ->send();
 

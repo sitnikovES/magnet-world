@@ -349,4 +349,19 @@ class SiteController extends Controller
             'free_nl' => $free_nl,
         ]);
     }
+
+    public function actionLetter(){
+        $session = Yii::$app->session;
+        $message['name'] = 'no messages';
+        $message['param'] = '';
+        if(!$session->isActive){
+            $session->open();
+        }
+
+        return $this->renderPartial('letter', [
+            //'products' => $session,
+            'products' => isset($session['products']) ? $session['products'] : [],
+            'orderdata' => [],
+        ]);
+    }
 }
