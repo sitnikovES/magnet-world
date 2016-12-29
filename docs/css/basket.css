@@ -4,6 +4,9 @@ div {
 
 .prod_line {
     position: relative;
+   padding-bottom: 5px;
+    margin-top: 5px;
+    border-bottom: 1px solid #c0c0c0;
 }
 
 .prod_line td{

@@ -124,18 +124,25 @@ class DefaultController extends Controller
                         }
                     }
                 }
+
+                //формируем текст письма
+                $page = $this->renderPartial('letter', [
+                    //'products' => $session,
+                    'products' => isset($session['products']) ? $session['products'] : [],
+                    'model' => $model,
+                ]);
+
+                //return $page;
+
+                Yii::$app->mailer->compose()
+                    ->setTo(['mama7361@mail.ru', 'shop@magnet-world.ru', $model->email])
+                    ->setFrom('shop@magnet-world.ru') //magnetmaster
+                    ->setSubject('Ваш заказ на сайте' . $_SERVER['SERVER_NAME'])
+                    ->setHtmlBody($page)
+                    ->send();
+
                 $session->destroy();
             }
-
-            Yii::$app->mailer->compose()
-                ->setTo(['mama7361@mail.ru', 'shop@magnet-world.ru', $model->email])
-                ->setFrom('shop@magnet-world.ru') //magnetmaster
-                ->setSubject('Новый заказ(' . $this->name . ')')
-                ->setHtmlBody($this->name
-                    . ''
-                    . $this->mes)
-                ->send();
-
             return $this->redirect(['thanks']);
         } else {
             return $this->render('order', [
@@ -146,5 +153,24 @@ class DefaultController extends Controller
 
     public function actionThanks(){
         return $this->render('thanks');
+    }
+
+    public function actionLetter(){
+        $session = Yii::$app->session;
+        $message['name'] = 'no messages';
+        $message['param'] = '';
+        if(!$session->isActive){
+            $session->open();
+        }
+
+        $model = new Orders();
+
+        $page = $this->renderPartial('letter', [
+            //'products' => $session,
+            'products' => isset($session['products']) ? $session['products'] : [],
+            'model' => $model,
+        ]);
+
+        return $page;
     }
 }

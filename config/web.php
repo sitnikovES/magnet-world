@@ -60,17 +60,13 @@ $config = [
                 //'/catalog' => 'site/catalog',
                 '/paneli.html' => 'site/catalog',
                 '/product' => 'site/product',
-                '/letter' => 'site/letter',
 
                 '/dostavka' => 'site/dostavka',
-
-
-
 
                 'basket/order' => 'basket/default/order',
                 'basket/thanks' => 'basket/default/thanks',
                 'basket/del' => 'basket/default/del',
-
+                'basket/letter' => 'basket/default/letter',
 
                 'admin/login' => 'admin/default/login',
                 'admin/logout' => 'admin/default/logout',

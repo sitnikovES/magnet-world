@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
     <div class="container">
-        <h1><?= Html::encode($this->title) ?></h1>
+        <h1 align="center"><?= Html::encode($this->title) ?></h1>&nbsp;
         <?php if(isset($products) and count($products) > 0){ foreach ($products as $pkey => $product){ ?>
             <div class="row prod_line">
                 <div class="col-sm-3">

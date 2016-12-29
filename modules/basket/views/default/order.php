@@ -39,10 +39,10 @@ $this->registerJsFile('/js/order.js', ['depends' => \yii\web\JqueryAsset::classN
                     </div>
                     <div class="col-sm-6">
 
-                        <?= $form->field($model, 'pay_type_id')->radioList(ArrayHelper::map(Paytype::find()->where(['active' => 1])->all(), 'id', 'name')) ?>
+                        <?= $form->field($model, 'pay_type_id', ['template'=>"\n\t<!-- Этикетка, название поля -->\n\t{label}\n\n\t<!-- Поле формы -->\n\t{input}\n\n\t<!-- Блок подсказки - выводится только если есть содержимое-->\n\t{hint}\n\n\t<!-- Блок сообщения об ошибке - появляется/исчезает при наличие ошибок валидации формы -->\n\t{error}"])->radioList(ArrayHelper::map(Paytype::find()->where(['active' => 1])->all(), 'id', 'name')) ?>
 
                         <?= $form->field($model, 'post_type_id')->radioList(ArrayHelper::map(Postcompany::find()->where(['active' => 1])->all(), 'id', 'name')) ?>
-
+<?php /*http://guide.yii2.org-info.by/zametka-chto-yii2-razrabotchik-hochet-skazat-verstalschiku-no-stesnyaetsya.html*/ ?>
                     </div>
                 </div>
 
