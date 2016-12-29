@@ -24,11 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="col-sm-5">
                     <table>
-                        <?php foreach($product as $key => $value){ if(is_numeric($key)){?>
+                        <?php foreach($product as $key => $value){
+                            if(is_numeric($key) and $value > 0 ){ ?>
                             <tr><td><?= $param_list[$key]['name'] ?></td><td class="right">&nbsp;<?= $value ?></td><td>&nbsp;мм.</td></tr>
                         <?php }} ?>
                         <tr><td>Количество:</td><td>&nbsp;<?= $product['cn'] ?></td><td>&nbsp;</td></tr>
-                        <tr><td>Стоимось:</td><td>&nbsp;<?= $product['price'] ?></td><td>&nbsp;руб.</td></tr>
+                        <tr><td>Стоимость:</td><td>&nbsp;<?= $product['price'] ?></td><td>&nbsp;руб.</td></tr>
                     </table>
                 </div>
                 <div class="prod_del">

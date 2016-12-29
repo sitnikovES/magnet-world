@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'active')->dropDownList(['Нет', 'Да']) ?>
 
+    <?= $form->field($model, 'def')->dropDownList(['Нет', 'Да']) ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Сохранить' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

@@ -8,7 +8,6 @@ use yii\helpers\Url;
 $this->title = 'Магнитный мир';
 ?>
 <div class="site-index">
-
     <div class="body-content">
         <div class="jumbotron">
             <h1>Наши новинки!</h1>

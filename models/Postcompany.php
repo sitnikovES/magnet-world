@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property string $url
  * @property integer $price
+ * @property integer $def
  */
 class Postcompany extends \yii\db\ActiveRecord
 {
@@ -29,9 +30,12 @@ class Postcompany extends \yii\db\ActiveRecord
     {
         return [
             [['price', 'def', 'active'], 'integer'],
-            [['name'], 'string', 'max' => 20],
+            [['name'], 'string', 'max' => 30],
             [['url'], 'string', 'max' => 255],
             [['price'], 'default', 'value' => 0],
+            [['def'], 'integer'],
+            [['def'], 'default', 'value' => 0],
+            [['def'], 'in', 'range' => [0, 1]],
         ];
     }
 
@@ -45,8 +49,16 @@ class Postcompany extends \yii\db\ActiveRecord
             'name' => 'Способ доставки',
             'url' => 'Сайт компании',
             'price' => 'Стоимость',
-            'def' => 'По умолчанию',
+            'def' => 'Использовать по умолчанию',
             'active' => 'Отображать',
         ];
+    }
+
+    public function afterSave($insert, $changedAttributes){
+        parent::afterSave($insert, $changedAttributes);
+        if($this->def) {
+            Postcompany::updateAll(['def' => 0], ['<>', 'id', $this->id]);
+        }
+        return true;
     }
 }

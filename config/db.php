@@ -1,5 +1,5 @@
 <?php
-if(in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'])) {
+if(file_exists(__DIR__ . '/../local')) {
     return [
         'class' => 'yii\db\Connection',
         'dsn' => 'mysql:host=localhost;dbname=stickerdecor',
