@@ -197,8 +197,8 @@ class SiteController extends Controller
     public function actionProduct($id)
     {
         $product_type_id = Product::find()->where(['id' => $id])->asArray()->one()['product_type_id'];
-        $param_list = Productparam::find()->where(['product_type_id' => $product_type_id,'active' => 1])->orderBy('pos')->asArray()->all();
-        $image_list = ProductPhoto::find()->where(['product_id' => $id])->asArray()->all();
+        $param_list = Productparam::find()->where(['product_type_id' => $product_type_id])->andWhere(['active' => 1])->orderBy('pos')->asArray()->all();
+        $image_list = ProductPhoto::find()->where(['product_id' => $id, 'hide' => 1])->asArray()->all();
 
         //Переменные по стоимости
         $var_list = [];

@@ -43,32 +43,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-sm-12">
                     <div id="carousel" class="carousel slide" style="width: 500px;">
                         <ol class="carousel-indicators">
-                            <li class="active" data-target="#carousel" data-slide-to="0"></li>
-                            <li data-target="#carousel" data-slide-to="1"></li>
-                            <li data-target="#carousel" data-slide-to="2"></li>
+                            <?php foreach($image_list as $key => $image){ ?>
+                                <li data-target="#carousel" data-slide-to="<?= $key ?>" <?= (!$key) ? 'class="active"' : '' ?>></li>
+                            <?php } ?>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="/img/product/1/id_1_500x500.jpg" />
+                            <?php foreach($image_list as $key => $image){ ?>
+                            <div class="item<?= (!$key) ? ' active' : '' ?>">
+                                <img src="/img/product/<?= $product['id'] . '/demo/' . $image['filename'] ?>" alt="<?= $image['alt'] ?>" style="max-height: 350px; max-width: 350px;" />
                                 <div class="carousel-caption">
-                                    <h3><?= $product['name'] ?></h3>
-                                    <p>Какой-то текст</p>
+                                    <h3><?= $image['title'] ?></h3>
                                 </div>
                             </div>
-                            <div class="item">
-                                <img src="/img/product/2/id_2_500x500.jpg" />
-                                <div class="carousel-caption">
-                                    <h3><?= $product['name'] ?></h3>
-                                    <p>Какой-то текст</p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="/img/product/3/id_3_500x500.jpg" />
-                                <div class="carousel-caption">
-                                    <h3><?= $product['name'] ?></h3>
-                                    <p>Какой-то текст</p>
-                                </div>
-                            </div>
+                            <?php } ?>
                         </div>
                         <a href="#carousel" class="left carousel-control" data-slide="prev" style="background-image: none;">
                             <span class="glyphicon glyphicon-chevron-left"></span>
