@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'role_id')->dropDownList($model->roles) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList($model->status_list) ?>
 
     <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
 

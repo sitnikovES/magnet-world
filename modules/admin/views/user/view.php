@@ -37,11 +37,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'role_id',
                 'value' => $model->roles[$model->role_id],
             ],
-            'status',
-            //'password_hash',
+            [
+                'attribute' => 'status',
+                'value' => $model->status_list[$model->status],
+            ],
             ['attribute' => 'created_at', 'format' => ['datetime', 'dd.MM.Y HH:mm:ss']],
             ['attribute' => 'updated_at', 'format' => ['datetime', 'dd.MM.Y HH:mm:ss']],
-            //'auth_key',
+            'password_hash',
+            'auth_key',
         ],
     ]) ?>
 

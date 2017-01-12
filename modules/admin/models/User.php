@@ -28,6 +28,10 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public $password;
 
+    public $status_list = [
+        self::STATUS_DELETED => 'Пользователь удален',
+        self::STATUS_ACTIVE => 'Пользователь активен',
+        self::STATUS_NOT_ACTIVE => 'Пользователь не активен'];
     public $roles = array(1 => 'Администратор', 2 => 'Дизайнер');
 
 
