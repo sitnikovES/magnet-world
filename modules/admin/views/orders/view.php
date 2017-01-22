@@ -48,6 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['attribute' => 'Способ отправки', 'value' => $model->postcompany->name, ],
                 'post_code',
                 'note',
+                'order_key',
             ],
         ]) ?>
 

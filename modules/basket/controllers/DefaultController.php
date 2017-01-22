@@ -137,7 +137,7 @@ class DefaultController extends Controller
                 Yii::$app->mailer->compose()
                     ->setTo(['mama7361@mail.ru', 'shop@magnet-world.ru', $model->email])
                     ->setFrom('shop@magnet-world.ru') //magnetmaster
-                    ->setSubject('Ваш заказ на сайте' . $_SERVER['SERVER_NAME'])
+                    ->setSubject('Ваш заказ на сайте ' . $_SERVER['SERVER_NAME'])
                     ->setHtmlBody($page)
                     ->send();
 
