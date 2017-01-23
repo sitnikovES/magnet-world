@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\OrderContent;
+use app\models\Orders;
 use app\models\Product;
 use app\models\Productparam;
 use app\models\Productthema;
@@ -348,5 +350,20 @@ class SiteController extends Controller
             'free' => $free,
             'free_nl' => $free_nl,
         ]);
+    }
+
+    public function actionOrder(){
+        $order_key = Yii::$app->request->get('order_key');
+        if($order_key){
+            $order = Orders::find()->where(['order_key' => $order_key])->one();
+            if($order){
+                return $this->render('letter', [
+                    'model' => $order,
+                    'products' => OrderContent::find()->where(['order_id' => $order->id])->with('product')->asArray()->all(),
+                ]);
+            }
+            throw new NotFoundHttpException('Заказ не найден.');
+        }
+        throw new NotFoundHttpException('Запрашиваемая страница не найдена.');
     }
 }

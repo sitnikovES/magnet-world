@@ -36,6 +36,8 @@ use app\models\Postcompany;
 
     <?= $form->field($model, 'note')->textarea() ?>
 
+    <?= $form->field($model, 'order_key')->textInput() ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Сохранить' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
