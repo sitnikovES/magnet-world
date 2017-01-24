@@ -26,9 +26,7 @@ if(count($products)){
     }
     unset($tmp);
 
-    $post = \app\models\Postcompany::find()->where(['id' => $model->post_type_id])->one();
-
-    $price = $post->price;
+    $price = $model->post_price;
 }
 
 ?>
@@ -61,7 +59,7 @@ if(count($products)){
         </tr>
         <tr>
             <td>Способ отправки:&nbsp;</td>
-            <td class="bold"><?= $post->name ?></td>
+            <td class="bold"><?= $model->postcompany->name ?></td>
         </tr>
         <tr>
             <td>Способ оплаты:&nbsp;</td>
@@ -87,13 +85,13 @@ if(count($products)){
             </td>
         </tr>
         <?php } ?>
-        <?php if($post->price){ ?>
+        <?php if($model->post_price){ ?>
         <tr>
             <td colspan="2" style="border-bottom: #c0c0c0 1px solid;">
                 Стоимость отправки:
             </td>
             <td style="border-bottom: #c0c0c0 1px solid;">
-                <?= $post->price . ' руб.' ?>
+                <?= $model->post_price . ' руб.' ?>
             </td>
         </tr>
         <?php } ?>
@@ -107,8 +105,4 @@ if(count($products)){
         </tr>
     </table>
     <br>&nbsp;
-    <pre>
-        <?php /*print_r($model);*/ ?>
-        <?php print_r($products); ?>
-    </pre>
 <?php } ?>

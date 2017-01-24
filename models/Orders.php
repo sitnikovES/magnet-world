@@ -25,6 +25,7 @@ use app\models\Postcompany;
  * @property string $post_code
  * @property string $note
  * @property string $order_key
+ * @property string $post_price
  */
 class Orders extends \yii\db\ActiveRecord
 {
@@ -44,11 +45,12 @@ class Orders extends \yii\db\ActiveRecord
         return [
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'phone', 'address', 'email', 'post_type_id', 'postindex', 'pay_type_id'], 'required'],
-            [['postindex', 'order_status_id', 'pay_type_id', 'post_type_id'], 'integer'],
+            [['postindex', 'order_status_id', 'pay_type_id', 'post_type_id', 'post_price'], 'integer'],
             [['name', 'phone', 'address', 'email', 'post_code'], 'string', 'max' => 255],
             [['note', 'order_key'], 'string'],
             [['order_key'], 'unique'],
             [['email'], 'email'],
+            [['post_price'], 'default', 'value' => 0],
             [['post_type_id', 'order_status_id'], 'default', 'value' => 1],
             [['pay_type_id'], 'default', 'value' => 2],
         ];
@@ -74,6 +76,7 @@ class Orders extends \yii\db\ActiveRecord
             'post_code' => 'Код отправления',
             'note' => 'Примечание к заказу',
             'order_key' => 'Идентификатор заказа',
+            'post_price' => 'Стоимость доставки (руб.)',
         ];
     }
 
@@ -99,6 +102,7 @@ class Orders extends \yii\db\ActiveRecord
         if(parent::beforeSave($insert)){
             if($insert){
                 $this->order_key = Yii::$app->security->generateRandomString();
+                $this->post_price = $this->postcompany->price;
             }
             return true;
         }

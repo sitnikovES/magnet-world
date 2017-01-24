@@ -63,7 +63,7 @@ AppAsset::register($this);
                 ['label' => 'Способы оплаты', 'url'=>['/admin/paytype']],
                 ['label' => 'Способы отправки', 'url'=>['/admin/postcompany']],
             ]],
-            ['label' => 'Статистика', 'items' => [
+            ['label' => 'Отчетность', 'items' => [
             ]],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/admin/login']]

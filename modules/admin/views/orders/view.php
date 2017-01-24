@@ -49,6 +49,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'post_code',
                 'note',
                 'order_key',
+                [
+                    'attribute' => 'Стоимость доставки на момент заказа (руб.)',
+                    'format' => 'html',
+                    'value' => "<span style='color:red; font-weight: bold;'>" . $model->post_price . "</span>",
+                ],
             ],
         ]) ?>
 
