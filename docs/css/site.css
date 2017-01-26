@@ -93,3 +93,15 @@ a.desc:after {
 .bold {
     font-weight: bold;
 }
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.bold {
+    font-weight: bold;
+}
