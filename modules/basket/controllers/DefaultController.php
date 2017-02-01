@@ -143,7 +143,7 @@ class DefaultController extends Controller
 
                 $session->destroy();
             }
-            return $this->redirect(['thanks']);
+            return $this->redirect(['/order', 'order_key' => $model->order_key]);
         } else {
             return $this->render('order', [
                 'model' => $model,
