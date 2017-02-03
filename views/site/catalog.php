@@ -3,6 +3,8 @@ $this->registerCssFile('@web/css/catalog.css', '', 'catalog.css');
 /* @var $this yii\web\View */
 
 $this->title = 'Каталог магнитных панелей';
+
+$this->params['breadcrumbs'][] = 'Магнитные панели на холодильник';
 ?>
 <div class="site-index">
     <div class="row">

@@ -1,6 +1,8 @@
 <?php
 use app\models\OrderProductParam;
 
+$this->registerCssFile('/css/order.css');
+
 /**
  * Created by PhpStorm.
  * User: ugin
@@ -122,15 +124,15 @@ if(count($products)){
 
         </div>
         <div class="row center">
+            <h3>СПАСИБО ЗА ПОКУПКУ НА НАШЕМ САЙТЕ!</h3>
             <p>
-                <h3>СПАСИБО ЗА ПОКУПКУ НА НАШЕМ САЙТЕ!</h3>
                 Информация по вашему заказу отправлена вам на почту.
             </p>
         </div>
         <hr>
         <div class="row">
             <div class="col-sm-7 bold" style="text-transform: uppercase;">
-                Текущее состояние заказа: <?= $model->status->name ?>
+                Текущее состояние заказа: <span class="order_status_<?= $model->status->id ?>"><?= $model->status->name ?></span>
             </div>
             <div class="col-sm-5 right">
                 <button class="btn btn-success">Перейти к оплате</button>

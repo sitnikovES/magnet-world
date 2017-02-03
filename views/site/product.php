@@ -13,7 +13,8 @@ $this->registerMetaTag(['name' => 'keywords', 'content' => $product['keywords']]
 $this->registerMetaTag(['name' => 'description', 'content' => $product['description']]);
 
 $this->registerAssetBundle(ProductAsset::className());
-
+$this->params['breadcrumbs'][] = ['label' => 'Магнитные панели на холодильник', 'url' => ['site/catalog']];
+$this->params['breadcrumbs'][] = ['label' => \app\models\Productthema::find()->where(['id' => $product['product_thema_id']])->asArray()->one()['name'], 'url' => ['site/catalog', 'theme' => $product['product_thema_id']]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <script>

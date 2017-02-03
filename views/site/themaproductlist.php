@@ -10,7 +10,11 @@
 
 use yii\helpers\Url;
 
-$this->title = 'Каталог магнитных панелей';
+$this->title = 'Магнитные панели на холодильник - ' . $theme['name'];
+$this->params['breadcrumbs'][] = ['label' => 'Магнитные панели на холодильник', 'url' => ['site/catalog']];
+
+$this->params['breadcrumbs'][] = $theme['name'];
+
 ?>
 <div class="site-index">
     <div class="row" style="text-align: center;">

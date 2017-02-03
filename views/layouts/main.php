@@ -6,7 +6,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-//use yii\widgets\Breadcrumbs;
+use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 //use app\srv\Servdata;
 use yii\helpers\Url;
@@ -78,6 +78,13 @@ AppAsset::register($this);
         
         NavBar::end();
         ?>
+    </div>
+    <div class="container">
+        <?= Breadcrumbs::widget([
+            'homeLink' => ['label' => 'Главная', 'url' => '/'],
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+        <?= $content ?>
     </div>
 </div>
 <div class="container">
