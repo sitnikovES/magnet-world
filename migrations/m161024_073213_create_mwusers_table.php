@@ -12,7 +12,7 @@ class m161024_073213_create_mwusers_table extends Migration
      */
     public function up()
     {
-        $this->createTable('{{%users}', [
+        $this->createTable('{{%users}}', [
             'id' => $this->primaryKey(),
             'login' => $this->string(),
             'name' => $this->string(),

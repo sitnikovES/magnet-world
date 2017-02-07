@@ -12,7 +12,7 @@ class m161024_090455_rename_shopsettings extends Migration
     public function down()
     {
         echo "m161024_090455_rename_shopsettings cannot be reverted.\n";
-        $this->renameTable('mw_shop_settings', 'shop_settings');
+        $this->renameTable('{{%shop_settings}}', 'shop_settings');
         return false;
     }
 

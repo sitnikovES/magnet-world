@@ -16,7 +16,7 @@ return [
             'charset' => 'utf8',
         ],
         'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
+            //'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => true,
         ],
         'urlManager' => [
