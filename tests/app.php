@@ -2,8 +2,11 @@
 namespace tests;
 use tests\unit;
 
+use app\models\Product;
+
 require(__DIR__ . '/_bootstrap.php');
 
+/*
 $class = new \ReflectionClass('\tests\unit\UserTest');
 
 foreach(scandir(__DIR__ . '/unit') as $file){
@@ -22,4 +25,8 @@ foreach(scandir(__DIR__ . '/unit') as $file){
             }
         }
     }
-}
+}*/
+
+$product = new unit\ProductTest();
+
+$product->testValidateEmptyValues();

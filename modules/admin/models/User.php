@@ -55,6 +55,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             ['login', 'string', 'min' => 5, 'max' => 20],
             ['password', 'string', 'min' => 5, 'max' => 255],
             [['created_at', 'updated_at'], 'default', 'value' => 0],
+            [['login', 'name'], 'match', 'pattern' => '#^[a-z0-9_-]+$#i'],
         ];
     }
 
