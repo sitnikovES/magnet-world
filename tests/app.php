@@ -6,27 +6,15 @@ use app\models\Product;
 
 require(__DIR__ . '/_bootstrap.php');
 
-/*
-$class = new \ReflectionClass('\tests\unit\UserTest');
-
-foreach(scandir(__DIR__ . '/unit') as $file){
-    if(substr($file, -8, 8) == 'Test.php'){
-        $classname = pathinfo($file, PATHINFO_FILENAME); //возвращает имя с обрезкой расширения\
-        $class = new \ReflectionClass('\tests\unit\\' . $classname);
-        foreach($class->getMethods() as $metod){
-            //if(substr($metod->name, 0, 8) == 'testSave'){
-            if(substr($metod->name, 0, 4) == 'test'){
-                echo 'Test ' . $metod->class . '::' . $metod->name . PHP_EOL;
-                $test = new $metod->class;
-                $test->setUp();
-                $test->{$metod->name}();
-                $test->tearDown();
-                echo PHP_EOL;
-            }
-        }
+$class = new \ReflectionClass('\tests\unit\ProductTest');
+foreach($class->getMethods() as $method){
+    if(substr($method->name, 0, 4) == 'test'){
+        echo 'Test' . $method->class . '::' . $method->name . PHP_EOL . PHP_EOL;
+        /** @var TestCase $test */
+        $test = new $method->class;
+        $test->setUp();
+        $test->{$method->name}();
+        $test->tearDown();
+        echo PHP_EOL;
     }
-}*/
-
-$product = new unit\ProductTest();
-
-$product->testValidateEmptyValues();
+}

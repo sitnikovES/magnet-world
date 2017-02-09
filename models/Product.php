@@ -37,13 +37,15 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_type_id', 'name', 'name_translit'], 'required'],
+            [['product_type_id', 'name', 'name_translit', 'active'], 'required'],
             [['active', 'product_thema_id'], 'integer'],
             //[['product_type_id', 'active', 'product_thema_id', 'name_translit'], 'required'],
             [['name'], 'unique'],
             [['text', 'image'], 'string'],
             [['file'], 'file'],
             [['name', 'name_translit', 'title', 'keywords', 'description'], 'string', 'max' => 255],
+            [['name_translit', 'name'], 'match', 'pattern' => '#^[a-z0-9_-]+$#i'],
+            //[['name'], 'match', 'pattern' => '/^[A-Za-z0-9А-Яа-яЁё_-\s]+$/i'],
             [['active'], 'default', 'value' => 0],
         ];
     }
