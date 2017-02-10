@@ -13,7 +13,8 @@ use app\modules\admin\modules\products\products;
 use tests\TestCase;
 use Yii;
 
-class ProductTest extends TestCase {
+class ProductTest extends \PHPUnit_Framework_TestCase {
+//class ProductTest extends TestCase {
 
     public function setUp(){
         parent::setUp();
