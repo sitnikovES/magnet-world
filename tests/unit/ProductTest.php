@@ -13,19 +13,40 @@ use app\modules\admin\modules\products\products;
 use tests\TestCase;
 use Yii;
 
-class ProductTest extends \PHPUnit_Framework_TestCase {
+class ProductTest extends \PHPUnit_Extensions_Database_TestCase {
+//class ProductTest extends \PHPUnit_Framework_TestCase {
 //class ProductTest extends TestCase {
+
+    public function getConnection()
+    {
+//        print_r($GLOBALS);
+        // TODO: Implement getDataSet() method.
+        $pdo = new \PDO('sqlite:' . __DIR__ . '/../data/test.db', '', '');
+        return $this->createDefaultDBConnection($pdo, '');
+        /*$pdo = new \PDO($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD']);
+        return $this->createDefaultDBConnection($pdo, $GLOBALS['DB_DBNAME']);*/
+    }
+
+    public function getDataSet()
+    {
+        // TODO: Implement getConnection() method.
+        return $this->createXMLDataSet(dirname(__FILE__) . '/../_data/product.xml');
+    }
+
+    public static function setUpBeforeClass(){
+        //
+    }
 
     public function setUp(){
         parent::setUp();
 
-        Product::deleteAll();
+       /* Product::deleteAll();
         Yii::$app->db->createCommand()->insert(Product::tableName(),[
             'active' => 1,
             'name_translit' => 'martishka_i_ochki',
             'name' => 'unique',
             'product_type_id' => 1,
-        ])->execute();
+        ])->execute();*/
     }
 
     public function tearDown(){
@@ -79,8 +100,8 @@ class ProductTest extends \PHPUnit_Framework_TestCase {
     public function testUniqueValidation(){
         $product = new Product([
             'active' => 1,
-            'name_translit' => 'martishka',
-            'name' => 'unique',
+            'name_translit' => 'dasha',
+            'name' => 'dasha',
             'product_type_id' => 1,
         ]);
         $this->assertFalse($product->validate(), 'test unique name validation');

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <table name="mw_product">
+        <column>active</column>
+        <column>name_translit</column>
+        <column>name</column>
+        <column>product_type_id</column>
+        <row>
+            <value>1</value>
+            <value>sasha</value>
+            <value>sasha</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>1</value>
+            <value>dasha</value>
+            <value>dasha</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>1</value>
+            <value>masha</value>
+            <value>masha</value>
+            <value>1</value>
+        </row>
+    </table>
+</dataset>

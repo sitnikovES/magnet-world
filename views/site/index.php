@@ -6,6 +6,8 @@
 use yii\helpers\Url;
 
 $this->title = 'Магнитный мир';
+
+//phpinfo();
 ?>
 <div class="site-index">
     <div class="body-content">
